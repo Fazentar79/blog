@@ -8,10 +8,45 @@ body {
     font-family: 'roboto', sans-serif;
 }
 
+h1,
+h2 {
+    font-family: 'Whisper', sans-serif;
+}
+
+
+// Header
+
+#toggleMenu {
+    a {
+        transition: .3s ease-in-out;
+    }
+
+    a:hover {
+        transform: scale(1.2);
+
+    }
+}
+
 #brand {
     font-family: 'Whisper', sans-serif;
 
     p {
         font-family: 'roboto', sans-serif;
     }
+}
+
+#connection__btn-icon {
+    transition: 0.2s ease-in-out;
+
+}
+
+#connection__btn-icon:hover {
+    transform: scale(1.3);
+
+}
+
+// Home
+#home__news p,
+#home__comments p {
+    border-radius: 15px;
 }

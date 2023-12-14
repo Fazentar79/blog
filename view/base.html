@@ -15,7 +15,7 @@
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target="#menu">
 
     <header>
-        <nav class="p-4 d-flex navbar navbar-dark bg-dark navbar-expand-md fs-4" aria-label="" id="menu">
+        <nav class="d-flex navbar navbar-dark bg-dark navbar-expand-md fs-4" aria-label="" id="menu">
             <div class="container">
                 <div id="brand" class="navbar-brand fs-1">
                     Les Eternels Compagnons
@@ -44,9 +44,11 @@
                         </li>
                     </ul>
                 </div>
-                <button id="connection__btn-icon" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#connection__btn">
-                    <i class="fa-regular fa-user" style="color:#ffffff"></i>
+                <button id="connection__btn-icon" type="button" class="btn hover" data-bs-toggle="modal"
+                    data-bs-target="#connection__btn">
+                    <span class="fa-regular fa-user" style="color:#ffffff"></span>
                 </button>
+
                 <div class="modal fade" id="connection__btn" data-bs-backdrop="static">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -65,16 +67,18 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Mot de passe</label>
-                                        <input type="password" class="form-control" id="password" name="password" required>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            required>
                                     </div>
                                     <div class="mb-3">
-                                        <button id="submit__connection" type="submit" class="btn border-black btn-outline-dark">Se
+                                        <button id="submit__connection" type="submit"
+                                            class="btn border-black btn-outline-dark">Se
                                             connecter</button>
-                                        <button id="submit__inscription" type="submit" class="btn btn-outline-success">S'inscire</button>
+                                        <button id="submit__inscription" type="submit"
+                                            class="btn btn-outline-success">S'inscire</button>
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -83,11 +87,40 @@
     </header>
 
     <main class="container d-flex flex-grow-1">
-        <?= $content ?>
+        <section id="home__content">
+            <section id="home__intro" class="w-100 pt-5">
+                <h1 class="text-center">Bienvenue sur mon blog !</h1>
+
+                <p class="fs-4 p-5">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Et ea quibusdam veniam dolorem! Asperiores maiores aliquid exercitationem,
+                    labore voluptates distinctio, dolore ut temporibus debitis
+                    explicabo nihil repellat aut hic totam?
+                </p>
+            </section>
+            <div class="row col-md-12 g-5 pt-5">
+                <div id="home__news" class="col-md-6 me-md-5 ms-md-5">
+                    <h2 class="fw-bold">Les dernières news :</h2>
+                    <p class="bg-tertiary p-3">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
+                        minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem aliquam
+                        nostrum impedit! Asperiores, deserunt!
+                    </p>
+                </div>
+                <div id="home__comments" class="col-md-4">
+                    <h2 class="fw-bold">Derniers commentaires :</h2>
+                    <p class="bg-tertiary p-3">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
+                        minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem aliquam
+                        nostrum impedit! Asperiores, deserunt!
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="text-center p-3 border-top">
+        <div class="text-center p-3 bg-body-secondary">
             &copy;copyrigth 2023 - Frédéric Hot
         </div>
     </footer>
