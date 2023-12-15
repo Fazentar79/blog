@@ -15,7 +15,7 @@
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target="#menu">
 
     <header>
-        <nav class="p-4 d-flex navbar navbar-dark bg-dark navbar-expand-md fs-4" aria-label="" id="menu">
+        <nav class="d-flex navbar navbar-dark bg-dark navbar-expand-md fs-4" aria-label="" id="menu">
             <div class="container">
                 <div id="brand" class="navbar-brand fs-1">
                     Les Eternels Compagnons

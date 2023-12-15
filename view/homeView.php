@@ -11,7 +11,7 @@ ob_start();
     <section id="home__intro" class="w-100 pt-5">
         <h1 class="text-center">Bienvenue sur mon blog !</h1>
 
-        <p class="fs-3 p-5">
+        <p class="fs-4 p-5">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Et ea quibusdam veniam dolorem! Asperiores maiores aliquid exercitationem,
             labore voluptates distinctio, dolore ut temporibus debitis
