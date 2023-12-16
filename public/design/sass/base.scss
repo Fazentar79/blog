@@ -4,45 +4,34 @@
 @include googleFonts("Roboto:ital,wght@100;400;700");
 @include googleFonts("Whisper");
 
-body {
+body,
+p {
     font-family: 'roboto', sans-serif;
 }
 
 h1,
-h2 {
-    font-family: 'Whisper', sans-serif;
-}
-
-
-// Header
-
-#toggleMenu {
-    a {
-        transition: .3s ease-in-out;
-    }
-
-    a:hover {
-        transform: scale(1.2);
-
-    }
-}
-
+h2,
 #brand {
     font-family: 'Whisper', sans-serif;
+}
 
-    p {
-        font-family: 'roboto', sans-serif;
+// Header
+#toggleMenu {
+    a {
+        transition: .1s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
 }
 
 #connection__btn-icon {
-    transition: 0.2s ease-in-out;
+    transition: 0.1s ease-in-out;
 
-}
-
-#connection__btn-icon:hover {
-    transform: scale(1.3);
-
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 // Home

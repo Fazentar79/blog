@@ -47,37 +47,7 @@
                 <button id="connection__btn-icon" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#connection__btn">
                     <i class="fa-regular fa-user" style="color:#ffffff"></i>
                 </button>
-                <div class="modal fade" id="connection__btn" data-bs-backdrop="static">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
 
-                            <div class="modal-header">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                    <span class="visually-hidden">Fermer</span>
-                                </button>
-                            </div>
-
-                            <div class="modal-body">
-                                <form action="#" method="post">
-                                    <div class="mb-3">
-                                        <label for="pseudo" class="form-label">Pseudo</label>
-                                        <input type="text" class="form-control" id="pseudo" name="pseudo" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Mot de passe</label>
-                                        <input type="password" class="form-control" id="password" name="password" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <button id="submit__connection" type="submit" class="btn border-black btn-outline-dark">Se
-                                            connecter</button>
-                                        <button id="submit__inscription" type="submit" class="btn btn-outline-success">S'inscire</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </nav>
     </header>

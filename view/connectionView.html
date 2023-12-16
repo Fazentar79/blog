@@ -45,45 +45,25 @@
                 <a href="connectionView.html" id="connection__btn-icon"><span class="fa-regular fa-user ms-5"
                         style="color:#ffffff"></span>
                 </a>
-
             </div>
         </nav>
     </header>
 
     <main class="container d-flex flex-grow-1">
-        <section id="home__content">
-            <section id="home__intro" class="w-100 pt-5">
-                <h1 class="text-center">Bienvenue sur mon blog !</h1>
-
-                <p class="fs-4 m-5 p-5">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Et ea quibusdam veniam dolorem! Asperiores maiores aliquid exercitationem,
-                    labore voluptates distinctio, dolore ut temporibus debitis
-                    explicabo nihil repellat aut hic totam?
-                </p>
-            </section>
-            <section class="mt-5">
-                <div class="d-flex flex-column flex-md-row justify-content-between">
-                    <div id="home__news" class="w-50">
-                        <h2 class="fw-bold">Les dernières news :</h2>
-                        <p class="bg-tertiary p-3">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
-                            minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem
-                            aliquam
-                            nostrum impedit! Asperiores, deserunt!
-                        </p>
-                    </div>
-                    <div id="home__comments" class="w-25">
-                        <h2 class="fw-bold">Derniers commentaires :</h2>
-                        <p class="bg-tertiary p-3">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
-                            minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem
-                            aliquam
-                            nostrum impedit! Asperiores, deserunt!
-                        </p>
-                    </div>
+        <section class="d-block m-auto">
+            <span class="">Connection</span>
+            <p>Veuillez entrer votre email et mot de passe :</p>
+            <form action="#" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Adresse email</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                 </div>
-            </section>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Se connecter</button>
+            </form>
         </section>
     </main>
 
