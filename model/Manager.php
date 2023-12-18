@@ -2,7 +2,10 @@
 
 class Manager
 {
-    protected function connection()
+    /**
+     * @throws Exception
+     */
+    protected function connection(): PDO
     {
         try {
             $db = new PDO('mysql:host=localhost;dbname=blog_jdr;charset=utf8', 'root', '');

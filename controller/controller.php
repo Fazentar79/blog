@@ -2,7 +2,10 @@
 
 require_once 'model/UserManager.php';
 
-function home()
+/**
+ * @throws Exception
+ */
+function home(): void
 {
     $userManager = new UserManager();
     $req = $userManager->getUser();

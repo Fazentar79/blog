@@ -4,7 +4,10 @@ require_once 'Manager.php';
 
 class UserManager extends Manager
 {
-    public function getUser()
+    /**
+     * @throws Exception
+     */
+    public function getUser(): false|PDOStatement
     {
         $db = $this->connection();
         return $db->query('SELECT * FROM users');

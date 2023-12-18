@@ -11,34 +11,35 @@ ob_start();
     <section id="home__intro" class="w-100 pt-5">
         <h1 class="text-center">Bienvenue sur mon blog !</h1>
 
-        <p class="fs-4 p-5">
+        <p class="fs-4 m-5 p-5">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Et ea quibusdam veniam dolorem! Asperiores maiores aliquid exercitationem,
             labore voluptates distinctio, dolore ut temporibus debitis
             explicabo nihil repellat aut hic totam?
         </p>
     </section>
-
-
-    <div class="row col-md-12 g-5 pt-5">
-        <div id="home__news" class="col-md-6 me-md-5 ms-md-5">
-            <h2 class="fw-bold">Les dernières news :</h2>
-            <p class="bg-tertiary p-3">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
-                minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem aliquam
-                nostrum impedit! Asperiores, deserunt!
-            </p>
+    <section class="mt-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div id="home__news" class="w-50">
+                <h2 class="fw-bold">Les dernières news :</h2>
+                <p class="bg-tertiary p-3">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
+                    minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem
+                    aliquam
+                    nostrum impedit! Asperiores, deserunt!
+                </p>
+            </div>
+            <div id="home__comments" class="w-25">
+                <h2 class="fw-bold">Derniers commentaires :</h2>
+                <p class="bg-tertiary p-3">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
+                    minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem
+                    aliquam
+                    nostrum impedit! Asperiores, deserunt!
+                </p>
+            </div>
         </div>
-        <div id="home__comments" class="col-md-4">
-            <h2 class="fw-bold">Derniers commentaires :</h2>
-            <p class="bg-tertiary p-3">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi, eius temporibus aspernatur
-                minus, ullam facilis delectus iste repellat iure quam accusamus qui officia maxime rem aliquam
-                nostrum impedit! Asperiores, deserunt!
-            </p>
-        </div>
-    </div>
-</section>
+    </section>
 
 <?php
 $content = ob_get_clean();
