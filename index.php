@@ -1,6 +1,6 @@
 <?php
 
-require 'controller/controller.php';
+require 'vendor/autoload.php';
 
 try {
     if (isset($_GET['page'])) {

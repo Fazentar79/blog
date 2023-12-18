@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Manager;
+
+use Exception;
+use PDO;
+
 class Manager
 {
     /**

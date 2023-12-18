@@ -1,5 +1,7 @@
 <?php
 
+use App\Manager\Manager;
+
 require_once 'Manager.php';
 
 class UserManager extends Manager
