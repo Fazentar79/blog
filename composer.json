@@ -9,8 +9,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "App\\": "Class/"
+            "App\\": "App/model/"
         }
     },
-    "require": {}
+    "require": {
+        "ext-pdo": "*"
+    }
 }

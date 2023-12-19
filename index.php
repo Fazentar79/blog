@@ -1,12 +1,17 @@
 <?php
 
 require 'vendor/autoload.php';
+require 'App/controller/controller.php';
 
 try {
     if (isset($_GET['page'])) {
         if ($_GET['page'] == 'home') {
             home();
-        } else {
+        }elseif ($_GET['page'] == 'universe') {
+            universe();
+        }elseif ($_GET['page'] == 'connection') {
+            connection();
+        }else {
             throw new Exception("La page demandée n'existe pas.");
         }
     } else {
