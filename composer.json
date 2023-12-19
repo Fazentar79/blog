@@ -13,6 +13,7 @@
         }
     },
     "require": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "vendor/twbs/bootstrap": "5.3.2"
     }
 }

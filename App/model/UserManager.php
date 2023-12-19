@@ -1,9 +1,8 @@
 <?php
 
-namespace App\UserManager;
+namespace App;
 
 use Exception;
-use App\Manager;
 use PDOStatement;
 
 class UserManager extends Manager

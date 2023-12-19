@@ -6,16 +6,18 @@ require 'App/controller/controller.php';
 try {
     if (isset($_GET['page'])) {
         if ($_GET['page'] == 'home') {
-            home();
+            require 'view/homeView.php';
         }elseif ($_GET['page'] == 'universe') {
-            universe();
+            require 'view/universeView.php';
+        }elseif ($_GET['page'] == 'contact') {
+            require 'view/contactView.php';
         }elseif ($_GET['page'] == 'connection') {
-            connection();
+            require 'view/connectionView.php';
         }else {
             throw new Exception("La page demandée n'existe pas.");
         }
     } else {
-        home();
+        require 'view/homeView.php';
     }
 } catch (Exception $e) {
     $error = $e->getMessage();
