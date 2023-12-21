@@ -1,0 +1,23 @@
+@import "variables";
+@import "mixins";
+@import "mediaQueries";
+
+@include googleFonts("Roboto:ital,wght@100;400;700");
+@include googleFonts("Whisper");
+
+body,
+p {
+  font-family: 'roboto', sans-serif;
+}
+
+h1,
+h2,
+#brand {
+  font-family: 'Whisper', sans-serif;
+}
+
+// Home
+#home__news p,
+#home__comments p {
+  border-radius: 15px;
+}

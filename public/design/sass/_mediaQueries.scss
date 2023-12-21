@@ -1,0 +1,23 @@
+@media all and (min-width: 768px) {
+  #connection__btn {
+    span:nth-of-type(2) {
+      display: none;
+    }
+  }
+};
+
+@media all and (max-width: 425px) {
+  #connection__btn {
+    span:nth-of-type(1) {
+      display: none;
+    }
+  }
+};
+
+@media all and (max-width: 320px) {
+  nav {
+    p {
+      display: none;
+    }
+  }
+};

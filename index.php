@@ -10,9 +10,11 @@ try {
         }elseif ($_GET['page'] == 'universe') {
             require 'view/universeView.php';
         }elseif ($_GET['page'] == 'contact') {
-            require 'view/contactView.php';
+            require 'view/commentsView.php';
         }elseif ($_GET['page'] == 'connection') {
             require 'view/connectionView.php';
+        }elseif ($_GET['page'] == 'inscription') {
+            require 'view/inscriptionView.php';
         }else {
             throw new Exception("La page demandée n'existe pas.");
         }
