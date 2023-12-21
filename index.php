@@ -5,13 +5,11 @@ require 'App/controller/controller.php';
 
 try {
     if (isset($_GET['page'])) {
-        if ($_GET['page'] == 'home') {
+        if ($_GET['page'] == 'accueil') {
             require 'view/homeView.php';
-        }elseif ($_GET['page'] == 'universe') {
+        }elseif ($_GET['page'] == 'univers') {
             require 'view/universeView.php';
-        }elseif ($_GET['page'] == 'contact') {
-            require 'view/commentsView.php';
-        }elseif ($_GET['page'] == 'connection') {
+        }elseif ($_GET['page'] == 'connexion') {
             require 'view/connectionView.php';
         }elseif ($_GET['page'] == 'inscription') {
             require 'view/inscriptionView.php';

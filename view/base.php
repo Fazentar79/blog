@@ -34,16 +34,13 @@
             <div class="collapse navbar-collapse justify-content-end" id="toggleMenu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="home" class="nav-link">Accueil</a>
+                        <a href="accueil" class="nav-link">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a href="universe" class="nav-link">Univers</a>
+                        <a href="univers" class="nav-link">Univers</a>
                     </li>
                     <li class="nav-item">
-                        <a href="contact" class="nav-link">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="connection" id="connection__btn" class="nav-link">
+                        <a href="connexion" id="connection__btn" class="nav-link">
                             <span class="fa-regular fa-user ms-md-3">
                             </span>
                             <span class="fs-6">Inscription / Connection</span>
