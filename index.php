@@ -13,7 +13,13 @@ try {
             require 'view/connectionView.php';
         }elseif ($_GET['page'] == 'inscription') {
             require 'view/inscriptionView.php';
-        }else {
+        }elseif ($_GET['page'] == 'fantasy') {
+            require 'view/fantasyView.php';
+        }elseif ($_GET['page'] == 'dark-fantasy') {
+            require 'view/darkFantasyView.php';
+        }elseif ($_GET['page'] == 'steampunk') {
+            require 'view/steampunkView.php';
+        }        else {
             throw new Exception("La page demandée n'existe pas.");
         }
     } else {

@@ -11418,8 +11418,7 @@ h2,
   font-family: "Whisper", sans-serif;
 }
 
-#home__news p,
-#home__comments p {
+.home__content p {
   border-radius: 15px;
 }
 

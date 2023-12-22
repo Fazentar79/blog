@@ -1,12 +1,12 @@
 <?php
 
-$title = "Connexion";
+$title = "Inscription";
 
 ob_start();
 ?>
 
     <section class="d-block m-auto">
-        <p class="fs-1 fw-bold text-center mb-5">Connexion</p>
+        <p class="fs-1 fw-bold text-center mb-5">Inscription</p>
         <p>Veuillez remplir tous les champs :</p>
         <form action="#" method="post">
             <div>
@@ -24,7 +24,7 @@ ob_start();
             <button type="submit" class="w-100 btn btn-outline-dark border-black">Rejoindre l'aventure</button>
             <div class="mt-2 text-center">
                 Déjà dans l'aventure ?
-                <a href="connection" class="">Connexion</a>
+                <a href="connexion" class="">Connexion</a>
             </div>
         </form>
     </section>

@@ -1,6 +1,0 @@
-<?php
-
-/**
- * @throws Exception
- */
-

@@ -58,7 +58,7 @@
 </main>
 
 <footer>
-    <div class="text-center p-3 border-top">
+    <div class="text-center mt-5 p-3 border-top">
         &copy;copyrigth 2023 - Frédéric Hot
     </div>
 </footer>
