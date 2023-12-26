@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-
 <?php
 
 $title = "Accueil";
@@ -45,5 +42,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 
-require_once "base.php";
+require_once 'view/template/base.php';
 ?>

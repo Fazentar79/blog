@@ -10,8 +10,8 @@ ob_start();
     <section class="container">
         <div class="mt-5 mb-5 d-flex flex-lg-row flex-column">
             <div class="p-0 card">
-                <a href="fantasy"><img src="../public/assets/image/fantasy/fantasy02.jpg"
-                                       alt="photo de fantasy" class="card-img h-100"></a>
+                <a href="fantasy"><img src="../../public/assets/image/fantasy/fantasy02.jpg"
+                                               alt="photo de fantasy" class="card-img h-100"></a>
                 <div class="card-header text-center">
                     Fantasy
                 </div>
@@ -22,8 +22,8 @@ ob_start();
                     </div>
             </div>
             <div class="p-0 card mx-lg-3">
-                <a href="dark-fantasy"><img src="../public/assets/image/darkFantasy/darkFantasy06.jpg"
-                                           alt="photo de dark fantasy" class="card-img h-100"></a>
+                <a href="dark-fantasy"><img src="../../public/assets/image/darkFantasy/darkFantasy06.jpg"
+                                               alt="photo de dark fantasy" class="card-img h-100"></a>
                 <div class="card-header text-center">
                     Dark Fantasy
                 </div>
@@ -33,8 +33,8 @@ ob_start();
                 </div>
             </div>
             <div class="p-0 card">
-                <a href="steampunk"><img src="../public/assets/image/steampunkFantasy/steampunkFantasy03.jpg"
-                                         alt="photo de steampunk fantasy" class="card-img h-100"></a>
+                <a href="steampunk"><img src="../../public/assets/image/steampunkFantasy/steampunkFantasy03.jpg"
+                                               alt="photo de steampunk fantasy" class="card-img h-100"></a>
                 <div class="card-header text-center">
                     Steampunk Fantasy
                 </div>
@@ -49,5 +49,5 @@ ob_start();
 <?php
 $content = ob_get_clean();
 
-require_once "base.php";
+require_once "view/template/base.php";
 ?>

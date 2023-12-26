@@ -16,6 +16,17 @@ h2,
   font-family: 'Whisper', sans-serif;
 }
 
+.zoom {
+  transition: .1s;
+  &:hover {
+    opacity: .8;
+  }
+  &:active {
+    opacity: initial;
+    transform: scale(2) translate(15%);
+  }
+}
+
 // Home
 .home__content p {;
   border-radius: 15px;

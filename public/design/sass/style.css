@@ -11418,6 +11418,17 @@ h2,
   font-family: "Whisper", sans-serif;
 }
 
+.zoom {
+  transition: 0.1s;
+}
+.zoom:hover {
+  opacity: 0.8;
+}
+.zoom:active {
+  opacity: initial;
+  transform: scale(2) translate(15%);
+}
+
 .home__content p {
   border-radius: 15px;
 }
