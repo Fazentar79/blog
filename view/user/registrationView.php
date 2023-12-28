@@ -8,14 +8,14 @@ ob_start();
     <section class="d-block m-auto">
         <p class="fs-1 fw-bold text-center mb-5">Inscription</p>
         <p>Veuillez remplir tous les champs :</p>
-        <form action="#" method="post">
+        <form action="verification-inscription" method="post">
             <div>
                 <label for="pseudo" class="form-label"></label>
-                <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo">
+                <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" required>
             </div>
             <div>
                 <label for="email" class="form-label"></label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail">
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label"></label>

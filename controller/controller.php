@@ -1,34 +1,42 @@
 <?php
 
-require 'model/UserManager.php';
+require_once 'model/UserManager.php';
 
 class UserController
 {
+    public UserManager $userManager;
+    public function __construct()
+    {
+        $this->userManager = new UserManager();
+    }
     /**
      * @throws Exception
      */
-    public function addUser($pseudo, $email, $password): void
+    private function registerAccount($pseudo, $email, $password): void
     {
-        $userManager = new UserManager();
-        $affectedLines = $userManager->addUser($pseudo, $email, $password);
-        if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter l\'utilisateur !');
-        } else {
-            header('Location: accueil');
-        }
+        if ($this->userManager->addUser($pseudo, $email, $password)) {
+        require 'view/pages/registrationValidateView.php';
+        } else $error = throw new Exception('Impossible d\'ajouter l\'utilisateur !');
     }
 
     /**
      * @throws Exception
      */
-    public function getUser($pseudo, $password, $email): void
+    public function validateRegistration($pseudo, $email, $password): void
     {
-        $userManager = new UserManager();
-        $user = $userManager->getUser($pseudo, $password, $email);
-        if ($user === false) {
-            throw new Exception('Impossible de trouver l\'utilisateur !');
-        } else {
-            header('Location: accueil');
-        }
+        if ($this->userManager->getUserInfo($pseudo, $email, $password) === null) {
+            $password = securityController::encrypt($password);
+            $this->registerAccount($pseudo, $email, $password);
+        }else
+            header('Location: inscription');
+            $error = throw new Exception('Pseudo, email ou mot de passe déjà pris !');
+    }
+}
+
+class securityController
+{
+    public static function encrypt($password): string
+    {
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 }

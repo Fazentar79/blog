@@ -1,31 +1,54 @@
 <?php
 
-require 'vendor/autoload.php';
-require 'controller/controller.php';
+session_start();
+
+require_once 'vendor/autoload.php';
+require_once 'controller/controller.php';
+
+$userController = new UserController();
+$page = $_GET['page'] ?? 'accueil';
 
 try {
-    if (isset($_GET['page'])) {
-        if ($_GET['page'] == 'accueil') {
-            require 'view/pages/homeView.php';
-        }elseif ($_GET['page'] == 'univers') {
+    switch ($page) {
+        case 'accueil':
+           require 'view/pages/homeView.php';
+            break;
+        case 'univers':
             require 'view/pages/universeView.php';
-        }elseif ($_GET['page'] == 'connexion') {
+            break;
+        case 'connexion':
             require 'view/user/connectionView.php';
-        }elseif ($_GET['page'] == 'inscription') {
+            break;
+        case 'inscription':
             require 'view/user/registrationView.php';
-        }elseif ($_GET['page'] == 'fantasy') {
+            break;
+        case 'fantasy':
             require 'view/pages/fantasyView.php';
-        }elseif ($_GET['page'] == 'dark-fantasy') {
+            break;
+        case 'dark-fantasy':
             require 'view/pages/darkFantasyView.php';
-        }elseif ($_GET['page'] == 'steampunk') {
+            break;
+        case 'steampunk':
             require 'view/pages/steampunkView.php';
-        }        else {
-            throw new Exception("La page demandée n'existe pas.");
-        }
-    } else {
-        require 'view/pages/homeView.php';
+            break;
+        case 'verification-inscription':
+            if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+                $pseudo = htmlspecialchars($_POST['pseudo']);
+                $email = htmlspecialchars($_POST['email']);
+                $password = htmlspecialchars($_POST['password']);
+                $userController->validateRegistration($pseudo, $email, $password);
+                header('Location: validation-inscription');
+            } else {
+                echo throw new Exception('Veuillez remplir tous les champs !');
+            }
+            break;
+        case 'validation-inscription':
+            require 'view/pages/registrationValidateView.php';
+            break;
+        default:
+            require 'view/pages/homeView.php';
     }
-} catch (Exception $e) {
-    $error = $e->getMessage();
+}catch (Exception $e) {
+    echo $error = $e->getMessage();
     require 'view/pages/errorView.php';
 }

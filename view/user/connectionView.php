@@ -11,11 +11,11 @@ ob_start();
     <form action="#" method="post">
         <div>
             <label for="email" class="form-label"></label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail">
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label"></label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
         </div>
         <button type="submit" class="w-100 btn btn-outline-dark border-black">Retourner à l'aventure</button>
         <div class="mt-2 text-center">

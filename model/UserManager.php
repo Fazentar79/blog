@@ -9,19 +9,32 @@ class UserManager extends Manager
      */
     public function addUser($pseudo, $email, $password): bool
     {
-        $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO user(pseudo, email, password) VALUES(?, ?, ?)');
-        return $req->execute(array($pseudo, $email, $password));
+        try {
+            $db = $this->dbConnect();
+            $req = $db->prepare('INSERT INTO user(pseudo, email, password) VALUES(?, ?, ?)');
+            return $req->execute(array($pseudo, $email, $password));
+        }catch (Exception $e) {
+            echo throw new Exception('Erreur : ' . $e->getMessage());
+        }
+
     }
 
     /**
      * @throws Exception
      */
-    public function getUser($pseudo, $password, $email)
+    public function getUserInfo($pseudo, $email, $password): void
     {
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, pseudo, email, password FROM user WHERE pseudo = ?');
-        $req->execute(array($pseudo, $password, $email));
-        return $req->fetch();
+        try {
+            $db = $this->dbConnect();
+            $req = $db->query('SELECT * FROM user');
+
+            while ($data = $req->fetch()) {
+                if ($data['pseudo'] === $pseudo || $data['email'] === $email || $data['password'] === $password) {
+                    exit();
+                }
+            }
+        }catch (Exception $e) {
+            echo throw new Exception('Erreur : ' . $e->getMessage());
+        }
     }
 }
