@@ -1,13 +1,14 @@
 <?php
 
-
+global $errorMessage;
 $title = "Erreur";
 
 ob_start();
 ?>
 
 <section class="container p-5">
-    <p class="fs-2"></p>
+    <p class="fs-2">
+    </p>
 
 </section>
 

@@ -37,13 +37,15 @@ try {
                 $email = htmlspecialchars($_POST['email']);
                 $password = htmlspecialchars($_POST['password']);
                 $userController->validateRegistration($pseudo, $email, $password);
-                header('Location: validation-inscription');
             } else {
-                echo throw new Exception('Veuillez remplir tous les champs !');
+                errorController::error('Veuillez remplir tous les champs !');
             }
             break;
         case 'validation-inscription':
             require 'view/pages/registrationValidateView.php';
+            break;
+        case 'erreur':
+            require 'view/pages/errorView.php';
             break;
         default:
             require 'view/pages/homeView.php';
