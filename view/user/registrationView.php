@@ -1,14 +1,14 @@
 <?php
-
 $title = "Inscription";
 
 ob_start();
 ?>
 
     <section class="d-block m-auto">
+        <h2> <?php  ?> </h2>
         <p class="fs-1 fw-bold text-center mb-5">Inscription</p>
         <p>Veuillez remplir tous les champs :</p>
-        <form action="verification-inscription" method="post">
+        <form action="inscription" method="post">
             <div>
                 <label for="pseudo" class="form-label"></label>
                 <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" required>

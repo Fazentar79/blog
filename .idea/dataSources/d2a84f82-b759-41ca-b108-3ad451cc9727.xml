@@ -1168,7 +1168,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="333" parent="1" name="blog_fantasy">
-      <LastIntrospectionLocalTimestamp>2023-12-29.16:35:44</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-03.11:25:39</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <user id="334" parent="1" name="root">
@@ -1188,7 +1188,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
     <column id="339" parent="338" name="id">
-      <AutoIncrement>21</AutoIncrement>
+      <AutoIncrement>26</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1208,18 +1208,12 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="343" parent="338" name="role">
-      <DasType>varchar(50)|0s</DasType>
-      <DefaultExpression>&apos;user&apos;</DefaultExpression>
-      <NotNull>1</NotNull>
-      <Position>5</Position>
-    </column>
-    <index id="344" parent="338" name="PRIMARY">
+    <index id="343" parent="338" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="345" parent="338" name="PRIMARY">
+    <key id="344" parent="338" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

@@ -4,59 +4,48 @@ require_once 'model/UserManager.php';
 
 class UserController
 {
-    public UserManager $userManager;
-    public function __construct()
-    {
-        $this->userManager = new UserManager();
-    }
     /**
      * @throws Exception
      */
     private function registerAccount($pseudo, $email, $password): void
     {
-        if ($this->userManager->addUser($pseudo, $email, $password)) {
+        if (!(new UserManager)->addUser($pseudo, $email, $password)) {
+            throw new Exception('Erreur lors de l\'inscription !');
+        }else {
             header('Location: validation-inscription');
-        } else {
-            header('Location: erreur');
-            ErrorController::error('Erreur lors de l\'inscription !');
+            exit();
         }
     }
 
     /**
      * @throws Exception
      */
-    public function validateRegistration($pseudo, $email, $password): void
+    public function registerVerification($pseudo, $email, $password): bool
     {
-        if ($this->userManager->isPseudoFree($pseudo)) {
-            $password = securityController::encrypt($password);
-            $email = securityController::checkEmail($email);
-            $this->registerAccount($pseudo, $email, $password);
-        }else
-            header('Location: erreur');
-            ErrorController::error('Pseudo, email ou mot de passe déjà utilisé !');
+        if (SecurityController::syntaxeEmail($email) === true) {
+            if (!(new UserManager)->getUserEmail($email)) {
+                $password = SecurityController::encrypt($password);
+                $this->registerAccount($pseudo, $email, $password);
+            }else {
+                throw new Exception('Pseudo, email ou password déjà utilisé !');
+            }
+        }else {
+            throw new Exception('Email invalide !');
+        }
     }
 }
 
-class securityController
+class SecurityController
 {
     public static function encrypt($password): string
     {
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
-    public static function checkEmail($email): bool
+    public static function syntaxeEmail($email): bool
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
-    }
-}
-
-class ErrorController
-{
-    /**
-     * @throws Exception
-     */
-    public static function error($error): void
-    {
-        $errorMessage = throw new Exception('Erreur : ' . $error);
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        }
     }
 }
