@@ -1,4 +1,4 @@
-<?php global$content,$title; ?>
+<?php global$content,$title,$error; ?>
 
 <!DOCTYPE html>
 <html lang="fr">

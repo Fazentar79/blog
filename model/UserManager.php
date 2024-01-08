@@ -7,10 +7,34 @@ class UserManager extends Manager
     /**
      * @throws Exception
      */
-    public function getUserInfo(): PDOStatement
+
+    public function getUserPseudo($pseudo)
     {
         $db = $this->dbConnect();
-        return $db->query('SELECT * FROM user');
+        $req = $db->prepare('SELECT COUNT(*) AS pseudoNumber FROM user WHERE pseudo = ?');
+        $req->execute([$pseudo]);
+
+        while($pseudoDb = $req->fetch()) {
+            if ($pseudoDb['pseudoNumber'] != 0) {
+                return true;
+            }
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserPassword($password)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM user WHERE password = ?');
+        $req->execute([$password]);
+
+        while($user = $req->fetch()) {
+            if ($user['password'] === $password) {
+                return $user;
+            }
+        }
     }
 
     /**

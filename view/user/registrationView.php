@@ -1,21 +1,22 @@
 <?php
+
 $title = "Inscription";
 
 ob_start();
 ?>
 
     <section class="d-block m-auto">
-        <h2> <?php  ?> </h2>
+        <p> <?php  ?> </p>
         <p class="fs-1 fw-bold text-center mb-5">Inscription</p>
         <p>Veuillez remplir tous les champs :</p>
         <form action="inscription" method="post">
             <div>
                 <label for="pseudo" class="form-label"></label>
-                <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo" required>
+                <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo">
             </div>
             <div>
                 <label for="email" class="form-label"></label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label"></label>
