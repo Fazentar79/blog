@@ -8,14 +8,7 @@ ob_start();
 <section class="d-block m-auto">
     <p class="fs-1 fw-bold text-center mb-5">Connexion</p>
     <p class="mb-5">Veuillez entrer votre email et mot de passe :</p>
-    <form action="
-    <?php
-    if (isset($_SESSION['pseudo'])) { ?>
-        profil
-    <?php } else { ?>
-        connexion
-    <?php }
-    ?> " method="post">
+    <form action="connection" method="post">
         <div>
             <label for="pseudo" class="form-label"></label>
             <input type="text" class="form-control" id="pseudo" name="pseudo" aria-describedby="emailHelp" placeholder="Pseudo">

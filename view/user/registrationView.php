@@ -9,7 +9,7 @@ ob_start();
         <p> <?php  ?> </p>
         <p class="fs-1 fw-bold text-center mb-5">Inscription</p>
         <p>Veuillez remplir tous les champs :</p>
-        <form action="inscription" method="post">
+        <form action="registration" method="post">
             <div>
                 <label for="pseudo" class="form-label"></label>
                 <input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Pseudo">

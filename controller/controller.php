@@ -9,19 +9,26 @@ class UserController
      */
     public function validationConnection($pseudo, $password): void
     {
-        $userPseudo = (new UserManager)->getUserPseudo($pseudo);
-
         if ((new UserManager)->isCombinationPassword($pseudo, $password)) {
-            $_SESSION['pseudo'] = $userPseudo['pseudo'];
+            $_SESSION['profile']['pseudo'] = $pseudo;
+            header('Location: profil');
         } else {
             throw new Exception('Pseudo ou mot de passe incorrect !');
         }
     }
 
-   public function disconnection(): void
+    /**
+     * @throws Exception
+     */
+    public function logout(): void
     {
-        session_destroy();
+        unset($_SESSION['profile']);
         header('Location: accueil');
+        if ($_SESSION['profile']) {
+            throw new Exception('Erreur lors de la déconnexion !');
+        }else {
+            throw new Exception('Vous êtes déconnecté !');
+        }
     }
 
     /**
@@ -53,6 +60,15 @@ class UserController
             throw new Exception('Email invalide !');
         }
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getUser(): false|array
+    {
+        $userManager = new UserManager();
+        $request = $userManager->getUser();
+    }
 }
 
 class SecurityController
@@ -62,10 +78,25 @@ class SecurityController
         return password_hash($password, PASSWORD_BCRYPT);
     }
 
+    public static function secure($string): string
+    {
+        return htmlentities($string);
+    }
+
     public static function syntaxeEmail($email): bool
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         }
+    }
+
+    public static function isConnected(): bool
+    {
+        return (!empty($_SESSION['profile']['pseudo']));
+    }
+
+    public static function isAdmin(): bool
+    {
+        return (!empty($_SESSION['profile']['role'] === 'admin'));
     }
 }

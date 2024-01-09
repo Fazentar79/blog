@@ -18,10 +18,16 @@ try {
             require 'view/pages/universeView.php';
             break;
         case 'connexion':
-            require 'view/user/connectionView.php';
+            if (SecurityController::isConnected()) {
+                require 'view/user/profileUserView.php';
+            }else {
+                require 'view/user/connectionView.php';
+            }
+            break;
+        case 'connection':
                 if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
-                    $pseudo = htmlspecialchars($_POST['pseudo']);
-                    $password = htmlspecialchars($_POST['password']);
+                    $pseudo = SecurityController::secure($_POST['pseudo']);
+                    $password = SecurityController::secure($_POST['password']);
                     $userController->validationConnection($pseudo, $password);
                 }else {
                     throw new Exception('Veuillez remplir tous les champs !');
@@ -32,17 +38,22 @@ try {
             break;
         case 'inscription':
             require 'view/user/registrationView.php';
+            break;
+        case 'registration':
                 if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-                    $pseudo = htmlspecialchars($_POST['pseudo']);
-                    $email = htmlspecialchars($_POST['email']);
-                    $password = htmlspecialchars($_POST['password']);
+                    $pseudo = SecurityController::secure($_POST['pseudo']);
+                    $email = SecurityController::secure($_POST['email']);
+                    $password = SecurityController::secure($_POST['password']);
                     $userController->registerVerification($pseudo, $email, $password);
                 }else {
                     throw new Exception('Veuillez remplir tous les champs !');
                 }
             break;
-        case 'deconnexion':
-            $userController->disconnection();
+        case 'validation-inscription':
+            require 'view/pages/registrationValidateView.php';
+            break;
+        case 'logout':
+            $userController->logout();
             break;
         case 'fantasy':
             require 'view/pages/fantasyView.php';
@@ -55,9 +66,6 @@ try {
             break;
         case 'erreur':
             require 'view/pages/errorView.php';
-            break;
-        case 'validation-inscription':
-            require 'view/pages/registrationValidateView.php';
             break;
         default:
             header('Location: erreur');

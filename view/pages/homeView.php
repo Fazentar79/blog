@@ -3,6 +3,7 @@
 $title = "Accueil";
 
 ob_start();
+
 ?>
 <section>
     <section class="w-100 pt-5">

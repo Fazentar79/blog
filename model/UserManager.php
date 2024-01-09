@@ -8,13 +8,14 @@ class UserManager extends Manager
      * @throws Exception
      */
 
-    public function getUserPseudo($pseudo)
+    public function getUser(): false|array
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM user WHERE pseudo = ?');
-        $req->execute([$pseudo]);
-
-        return $req->fetch();
+        $req = $db->prepare('SELECT * FROM user');
+        $req->execute();
+        $dataUser = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $dataUser;
     }
 
     /**
@@ -27,6 +28,7 @@ class UserManager extends Manager
         $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
         $req->execute();
         $result = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
         return $result['password'];
     }
 

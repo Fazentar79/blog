@@ -1,19 +1,30 @@
 <?php
 
 
-$title = "Connexion";
+$title = "Profil";
 
 ob_start();
 ?>
 
-<section>
-    <p>
-        <?php
-        if (isset($_SESSION['pseudo'])) {
-            echo "Bonjour " . $_SESSION['pseudo'] . " !";
-        }
-        ?>
-    </p>
+<section class="w-100 mt-5">
+    <h1 class="text-center">Profil</h1>
+    <section class="container">
+        <p>
+            <?php
+
+            try {
+                while ($user = (new UserController)->getUser()) {
+                    if (isset($_SESSION['profile']['pseudo'])) {
+                        echo "Bienvenue " . $user['pseudo'] . " !";
+                    }
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+
+            ?>
+        </p>
+    </section>
 </section>
 
 <?php

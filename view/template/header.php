@@ -21,14 +21,7 @@
                         <a href="univers" class="nav-link">Univers</a>
                     </li>
                     <li class="nav-item">
-                        <a href="
-                        <?php
-                        if (isset($_SESSION['pseudo'])) { ?>
-                            profil
-                        <?php } else { ?>
-                            connexion
-                        <?php }
-                        ?> " id="connection__btn" class="nav-link">
+                        <a href="connexion" id="connection__btn" class="nav-link">
                             <span class="fa-regular fa-user ms-md-3">
                             </span>
                             <span class="fs-6">Inscription / Connection</span>
