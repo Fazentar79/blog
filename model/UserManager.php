@@ -11,30 +11,32 @@ class UserManager extends Manager
     public function getUserPseudo($pseudo)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT COUNT(*) AS pseudoNumber FROM user WHERE pseudo = ?');
+        $req = $db->prepare('SELECT * FROM user WHERE pseudo = ?');
         $req->execute([$pseudo]);
 
-        while($pseudoDb = $req->fetch()) {
-            if ($pseudoDb['pseudoNumber'] != 0) {
-                return true;
-            }
-        }
+        return $req->fetch();
     }
 
     /**
      * @throws Exception
      */
-    public function getUserPassword($password)
+    public function getUserPassword($pseudo)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM user WHERE password = ?');
-        $req->execute([$password]);
+        $req = $db->prepare('SELECT password FROM user WHERE pseudo = :pseudo');
+        $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+        $req->execute();
+        $result = $req->fetch(PDO::FETCH_ASSOC);
+        return $result['password'];
+    }
 
-        while($user = $req->fetch()) {
-            if ($user['password'] === $password) {
-                return $user;
-            }
-        }
+    /**
+     * @throws Exception
+     */
+    public function isCombinationPassword($pseudo, $password): bool
+    {
+        $passwordDb = $this->getUserPassword($pseudo);
+        return password_verify($password, $passwordDb);
     }
 
     /**

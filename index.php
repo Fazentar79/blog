@@ -1,11 +1,11 @@
 <?php
 
-global $errorMessage;
 session_start();
 
 require_once 'vendor/autoload.php';
 require_once 'controller/controller.php';
 
+global $errorMessage;
 $userController = new UserController();
 $page = $_GET['page'] ?? 'accueil';
 
@@ -26,6 +26,9 @@ try {
                 }else {
                     throw new Exception('Veuillez remplir tous les champs !');
                 }
+            break;
+        case 'profil':
+            require 'view/user/profileUserView.php';
             break;
         case 'inscription':
             require 'view/user/registrationView.php';

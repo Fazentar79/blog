@@ -11,24 +11,13 @@ class UserController
     {
         $userPseudo = (new UserManager)->getUserPseudo($pseudo);
 
-        if ($this->$userPseudo($pseudo)) {
-            if (SecurityController::isCombinationPassword($password)) {
-                $this->createSession($pseudo, $password);
-            } else {
-                throw new Exception('Erreur lors de la connexion !');
-            }
+        if ((new UserManager)->isCombinationPassword($pseudo, $password)) {
+            $_SESSION['pseudo'] = $userPseudo['pseudo'];
         } else {
             throw new Exception('Pseudo ou mot de passe incorrect !');
         }
     }
 
-    public function createSession($pseudo, $password): void
-    {
-        $_SESSION['pseudo'] = $pseudo;
-        $_SESSION['password'] = $password;
-
-        header('Location: accueil');
-    }
    public function disconnection(): void
     {
         session_destroy();
@@ -78,14 +67,5 @@ class SecurityController
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
         }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public static function isCombinationPassword($password): bool
-    {
-        $passwordDb = (new UserManager)->getUserPassword($password);
-        return password_verify($password, $passwordDb);
     }
 }
