@@ -25,6 +25,7 @@ try {
             }
             break;
         case 'connection':
+            try {
                 if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
                     $pseudo = SecurityController::secure($_POST['pseudo']);
                     $password = SecurityController::secure($_POST['password']);
@@ -32,6 +33,11 @@ try {
                 }else {
                     throw new Exception('Veuillez remplir tous les champs !');
                 }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/user/connectionView.php';
+            }
+
             break;
         case 'profil':
             require 'view/user/profileUserView.php';
@@ -40,21 +46,25 @@ try {
             require 'view/user/registrationView.php';
             break;
         case 'registration':
+            try {
                 if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['password'])) {
                     $pseudo = SecurityController::secure($_POST['pseudo']);
                     $email = SecurityController::secure($_POST['email']);
-                    $password = SecurityController::secure($_POST['password']);
+                    $password = SecurityController::secure(SecurityController::encrypt($_POST['password']));
                     $userController->registerVerification($pseudo, $email, $password);
                 }else {
                     throw new Exception('Veuillez remplir tous les champs !');
                 }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/user/registrationView.php';
+            }
             break;
         case 'validation-inscription':
             require 'view/pages/registrationValidateView.php';
             break;
         case 'logout':
             $userController->logout();
-            break;
         case 'fantasy':
             require 'view/pages/fantasyView.php';
             break;

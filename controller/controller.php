@@ -9,12 +9,14 @@ class UserController
      */
     public function validationConnection($pseudo, $password): void
     {
-        if ((new UserManager)->isCombinationPassword($pseudo, $password)) {
-            $_SESSION['profile']['pseudo'] = $pseudo;
-            header('Location: profil');
-        } else {
-            throw new Exception('Pseudo ou mot de passe incorrect !');
-        }
+        $userManager = new UserManager();
+
+        if (!$userManager->isPasswordValid($pseudo, $password)) {
+                $_SESSION['pseudo'] = $pseudo;
+                header('Location: profil');
+            } else {
+                throw new Exception('Pseudo ou mot de passe incorrect !');
+            }
     }
 
     /**
@@ -22,12 +24,13 @@ class UserController
      */
     public function logout(): void
     {
-        unset($_SESSION['profile']);
+        unset($_SESSION['pseudo']);
         header('Location: accueil');
-        if ($_SESSION['profile']) {
+        if ($_SESSION['pseudo']) {
             throw new Exception('Erreur lors de la déconnexion !');
         }else {
             throw new Exception('Vous êtes déconnecté !');
+
         }
     }
 
@@ -51,7 +54,6 @@ class UserController
     {
         if (SecurityController::syntaxeEmail($email) === true) {
             if (!(new UserManager)->getUserEmail($email)) {
-                $password = SecurityController::encrypt($password);
                 $this->registerAccount($pseudo, $email, $password);
             } else {
                 throw new Exception('Pseudo, email ou password déjà utilisé !');
@@ -67,7 +69,7 @@ class UserController
     public function getUser(): false|array
     {
         $userManager = new UserManager();
-        $request = $userManager->getUser();
+        return $userManager->getUser();
     }
 }
 
@@ -75,12 +77,12 @@ class SecurityController
 {
     public static function encrypt($password): string
     {
-        return password_hash($password, PASSWORD_BCRYPT);
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 
     public static function secure($string): string
     {
-        return htmlentities($string);
+        return htmlspecialchars($string);
     }
 
     public static function syntaxeEmail($email): bool
@@ -92,11 +94,11 @@ class SecurityController
 
     public static function isConnected(): bool
     {
-        return (!empty($_SESSION['profile']['pseudo']));
+        return (!empty($_SESSION['pseudo']));
     }
 
     public static function isAdmin(): bool
     {
-        return (!empty($_SESSION['profile']['role'] === 'admin'));
+        return (!empty($_SESSION['role'] === 'admin'));
     }
 }

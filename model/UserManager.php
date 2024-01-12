@@ -8,14 +8,12 @@ class UserManager extends Manager
      * @throws Exception
      */
 
-    public function getUser(): false|array
+    public function getUser()
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $req = $db->prepare('SELECT * FROM user');
         $req->execute();
-        $dataUser = $req->fetchAll(PDO::FETCH_ASSOC);
-        $req->closeCursor();
-        return $dataUser;
+        return $req->fetch();
     }
 
     /**
@@ -23,11 +21,11 @@ class UserManager extends Manager
      */
     public function getUserPassword($pseudo)
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $req = $db->prepare('SELECT password FROM user WHERE pseudo = :pseudo');
-        $req->bindValue(':pseudo', $pseudo, PDO::PARAM_STR);
+        $req->bindValue(':pseudo', $pseudo);
         $req->execute();
-        $result = $req->fetch(PDO::FETCH_ASSOC);
+        $result = $req->fetch();
         $req->closeCursor();
         return $result['password'];
     }
@@ -35,10 +33,10 @@ class UserManager extends Manager
     /**
      * @throws Exception
      */
-    public function isCombinationPassword($pseudo, $password): bool
+    public function isPasswordValid($pseudo, $password): bool
     {
-        $passwordDb = $this->getUserPassword($pseudo);
-        return password_verify($password, $passwordDb);
+        $validPassword = $this->getUserPassword($pseudo);
+        return password_verify($password, $validPassword);
     }
 
     /**
@@ -46,7 +44,7 @@ class UserManager extends Manager
      */
     public function getUserEmail($email)
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $req = $db->prepare('SELECT COUNT(*) AS emailNumber FROM user WHERE email = ?');
         $req->execute([$email]);
 
@@ -63,7 +61,7 @@ class UserManager extends Manager
 
     public function addUser($pseudo, $email, $password): bool
     {
-        $db = $this->dbConnect();
+        $db = $this->getDb();
         $req = $db->prepare('INSERT INTO user(pseudo, email, password) VALUES(?, ?, ?)');
         return $req->execute([$pseudo, $email, $password]);
     }

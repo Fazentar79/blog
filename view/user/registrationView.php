@@ -1,11 +1,16 @@
 <?php
 
+global $errorMessage;
 $title = "Inscription";
 
 ob_start();
 ?>
 
     <section class="d-block m-auto">
+        <p class="fs-6 text-center text-danger">
+            <?php
+            echo $errorMessage;
+            ?>
         <p> <?php  ?> </p>
         <p class="fs-1 fw-bold text-center mb-5">Inscription</p>
         <p>Veuillez remplir tous les champs :</p>
