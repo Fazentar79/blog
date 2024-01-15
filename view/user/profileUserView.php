@@ -16,15 +16,12 @@ ob_start();
         </p>
         <p>
             <?php
-
+            $userController = new UserController();
             try {
-                $userController = new UserController();
-                $user = $userController->getUser();
-                echo 'Pseudo : ' . $_SESSION['pseudo'] . '<br>';
+                echo $userController->getUser();
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
-
             ?>
         </p>
 

@@ -18,8 +18,12 @@
                         <a href="accueil" class="nav-link">Accueil</a>
                     </li>
                     <li class="nav-item">
+                        <a href="commentaires" class="nav-link">News</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="univers" class="nav-link">Univers</a>
                     </li>
+
                     <li class="nav-item">
                         <a href="connexion" id="connection__btn" class="nav-link">
                             <span class="fa-regular fa-user ms-md-3">

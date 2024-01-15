@@ -8,12 +8,16 @@ class UserManager extends Manager
      * @throws Exception
      */
 
-    public function getUser()
+    public function getUserPseudo()
     {
         $db = $this->getDb();
-        $req = $db->prepare('SELECT * FROM user');
-        $req->execute();
-        return $req->fetch();
+        $req = $db->prepare('SELECT pseudo FROM user WHERE pseudo = ?');
+        $req->execute(['pseudo']);
+
+        if ($req->rowCount() > 0) {
+            $pseudoDb = $req->fetch();
+            return $pseudoDb['pseudo'];
+        }
     }
 
     /**
@@ -25,18 +29,13 @@ class UserManager extends Manager
         $req = $db->prepare('SELECT password FROM user WHERE pseudo = :pseudo');
         $req->bindValue(':pseudo', $pseudo);
         $req->execute();
-        $result = $req->fetch();
-        $req->closeCursor();
-        return $result['password'];
-    }
 
-    /**
-     * @throws Exception
-     */
-    public function isPasswordValid($pseudo, $password): bool
-    {
-        $validPassword = $this->getUserPassword($pseudo);
-        return password_verify($password, $validPassword);
+        if ($req->rowCount() > 0) {
+            $passwordDb = $req->fetch();
+            if (password_verify($_POST['password'], $passwordDb['password'])) {
+                return $passwordDb['password'];
+            }
+        }
     }
 
     /**

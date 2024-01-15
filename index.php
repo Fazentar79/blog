@@ -6,13 +6,18 @@ require_once 'vendor/autoload.php';
 require_once 'controller/controller.php';
 
 global $errorMessage;
+
 $userController = new UserController();
+$commentsController = new CommentsController();
 $page = $_GET['page'] ?? 'accueil';
 
 try {
     switch ($page) {
         case 'accueil':
            require 'view/pages/homeView.php';
+            break;
+        case 'commentaires':
+            require 'view/pages/newsView.php';
             break;
         case 'univers':
             require 'view/pages/universeView.php';
@@ -26,12 +31,17 @@ try {
             break;
         case 'connection':
             try {
-                if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
-                    $pseudo = SecurityController::secure($_POST['pseudo']);
-                    $password = SecurityController::secure($_POST['password']);
-                    $userController->validationConnection($pseudo, $password);
-                }else {
-                    throw new Exception('Veuillez remplir tous les champs !');
+                if (SecurityController::isConnected()) {
+                    throw new Exception('Vous êtes déjà connecté !');
+                }else
+                {
+                    if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
+                        $pseudo = htmlspecialchars($_POST['pseudo']);
+                        $password = htmlspecialchars($_POST['password']);
+                        $userController->verificationPseudo($pseudo);
+                    }else {
+                        throw new Exception('Veuillez remplir tous les champs !');
+                    }
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
@@ -48,9 +58,9 @@ try {
         case 'registration':
             try {
                 if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['password'])) {
-                    $pseudo = SecurityController::secure($_POST['pseudo']);
-                    $email = SecurityController::secure($_POST['email']);
-                    $password = SecurityController::secure(SecurityController::encrypt($_POST['password']));
+                    $pseudo = htmlspecialchars($_POST['pseudo']);
+                    $email = htmlspecialchars($_POST['email']);
+                    $password = htmlspecialchars(SecurityController::encrypt($_POST['password']));
                     $userController->registerVerification($pseudo, $email, $password);
                 }else {
                     throw new Exception('Veuillez remplir tous les champs !');
@@ -65,6 +75,25 @@ try {
             break;
         case 'logout':
             $userController->logout();
+        case 'add-comment':
+            try {
+                if (!SecurityController::isConnected()) {
+                    throw new Exception('Vous devez être connecté pour poster un commentaire !');
+                } else {
+                    if (isset($_POST['submit_comment'])) {
+                        if (!empty($_POST['message'])) {
+                            $message = htmlspecialchars($_POST['message']);
+                            $commentsController->postComment(htmlspecialchars($message));
+                        }else {
+                            throw new Exception('Veuillez remplir tous les champs !');
+                        }
+                    }
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/pages/newsView.php';
+            }
+            break;
         case 'fantasy':
             require 'view/pages/fantasyView.php';
             break;
