@@ -15,14 +15,6 @@ class UserController
     /**
      * @throws Exception
      */
-    public function getUser(): false|PDOStatement
-    {
-        return $this->userManager->getUser();
-    }
-
-    /**
-     * @throws Exception
-     */
     public function validationConnection($pseudo): void
     {
         if ($this->userManager->getUserPassword($pseudo)) {
