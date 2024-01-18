@@ -9,6 +9,7 @@ global $errorMessage;
 
 $userController = new UserController();
 $commentsController = new CommentsController();
+$articlesController = new ArticlesController();
 $page = $_GET['page'] ?? 'accueil';
 
 try {
@@ -75,6 +76,25 @@ try {
             break;
         case 'logout':
             $userController->logout();
+        case 'add-news':
+        try {
+            if (isset($_POST['submit_news'])) {
+                if (!empty($_POST['news'])) {
+                    $news = htmlspecialchars($_POST['news']);
+                    if ($_SESSION['role'] == 1) {
+                        $articlesController->addArticle($news);
+                    }else {
+                            throw new Exception('Vous n\'avez pas les droits pour publier une news.');
+                    }
+                }else {
+                    throw new Exception('Veuillez remplir tous les champs !');
+                }
+            }
+        }catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            require 'view/pages/homeView.php';
+        }
+            break;
         case 'add-comment':
             try {
                 if (!SecurityController::isConnected()) {
@@ -107,6 +127,22 @@ try {
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
                 require 'view/user/profileUserView.php';
+            }
+            break;
+        case 'delete-article':
+            try {
+                if (isset($_POST['delete_article'])) {
+                    $article_id = htmlspecialchars($_POST['id_article']);
+
+                    if ($articlesController->getNewsArticles($article_id) || $_SESSION['role'] == 1) {
+                        $articlesController->deleteArticle($article_id);
+                    }else {
+                        throw new Exception('Cette news n\'existe pas ou une erreur est survenue.');
+                    }
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/pages/homeView.php';
             }
             break;
         case 'delete-comment':

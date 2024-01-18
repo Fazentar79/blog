@@ -11429,7 +11429,7 @@ h2,
   transform: scale(2) translate(15%);
 }
 
-.home__content p {
+.borderRadius p {
   border-radius: 15px;
 }
 

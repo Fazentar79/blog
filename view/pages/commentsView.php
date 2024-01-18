@@ -51,7 +51,7 @@ ob_start();
                 if (SecurityController::isConnected()) {
                     foreach ($comments as $comment) { ?>
 
-                        <div class="bg-tertiary p-3 m-5">
+                        <p class="bg-tertiary p-3 m-5 borderRadius">
                             <span class="fw-bold">
                                 <?= $comment['comment_pseudo'] ?>
                             </span> : <br><br>
@@ -70,11 +70,7 @@ ob_start();
                                 } catch (Exception $e) {
                                     $errorMessage = $e->getMessage();
                                 }
-                            ?>
-
-                        </div>
-
-                    <?php }
+                            }
                 }else { ?>
                     <p class="text-center text-danger mt-5">"Vous devez être connecté pour voir les commentaires." </p>
                 <?php

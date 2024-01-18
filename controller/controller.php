@@ -2,6 +2,7 @@
 
 require_once 'model/UserManager.php';
 require_once 'model/CommentsManager.php';
+require_once 'model/ArticlesManager.php';
 
 class UserController
 {
@@ -159,6 +160,63 @@ class CommentsController
             throw new Exception('Erreur lors de la suppression du commentaire.');
         } else {
             header('Location: commentaires');
+            exit();
+        }
+    }
+}
+
+class ArticlesController
+{
+    public $articlesManager;
+
+    public function __construct()
+    {
+        $this->articlesManager = new ArticlesManager();
+    }
+
+    /**
+     * @throws Exception
+     */
+
+    public function getArticles(): PDOStatement
+    {
+        return $this->articlesManager->getArticles();
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getNewsArticles($id): bool
+    {
+        return $this->articlesManager->getNewsArticles($id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function addArticle($news): void
+    {
+        $result = $this->articlesManager->addArticle($news);
+
+        if (!$result) {
+            throw new Exception('Erreur lors de l\'ajout de l\'article.');
+        } else {
+            header('Location: accueil');
+            exit();
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteArticle($id): void
+    {
+        $result = $this->articlesManager->deleteArticle($id);
+
+        if (!$result) {
+            throw new Exception('Erreur lors de la suppression de l\'article.');
+        } else {
+            header('Location: accueil');
             exit();
         }
     }
