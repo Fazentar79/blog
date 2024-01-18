@@ -16,17 +16,17 @@ h2,
   font-family: 'Whisper', sans-serif;
 }
 
-.zoom {
+.opacity {
   transition: .1s;
   &:hover {
     opacity: .8;
   }
-  &:active {
-    opacity: initial;
-    transform: scale(2) translate(15%);
-  }
 }
 
-.borderRadius p {;
+.border_radius {
   border-radius: 15px;
+}
+
+.card {
+  margin-bottom: 15px;
 }

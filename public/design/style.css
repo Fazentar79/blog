@@ -11418,19 +11418,19 @@ h2,
   font-family: "Whisper", sans-serif;
 }
 
-.zoom {
+.opacity {
   transition: 0.1s;
 }
-.zoom:hover {
+.opacity:hover {
   opacity: 0.8;
 }
-.zoom:active {
-  opacity: initial;
-  transform: scale(2) translate(15%);
+
+.border_radius {
+  border-radius: 15px;
 }
 
-.borderRadius p {
-  border-radius: 15px;
+.card {
+  margin-bottom: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */

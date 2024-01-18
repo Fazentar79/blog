@@ -26,7 +26,6 @@ ob_start();
 
                 <span class="fw-bold">Pseudo :</span> <?= $_SESSION['pseudo'] ?> <br>
                 <span class="fw-bold">Email :</span> <?= $_SESSION['email'] ?> <br>
-                <span class="fw-bold">Role :</span> <?= $_SESSION['role'] ?> <br>
 
                 <a href="logout" class="text-decoration-none text-center">
                     <button class="btn btn-outline-secondary mt-5"> Se déconnecter</button>

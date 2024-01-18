@@ -6,7 +6,7 @@ $title = "Commentaires";
 ob_start();
 
 ?>
-<section class="container">
+<section>
 
     <section class="text-center text-danger w-100">
 
@@ -41,45 +41,40 @@ ob_start();
 
     </section>
 
-    <section class="w-100">
-        <?php
-            try {
+    <section>
+        <div>
+            <?php
+                try {
 
-                $commentController = new CommentsController();
-                $comments = $commentController->getUserComments();
+                    $commentController = new CommentsController();
+                    $comments = $commentController->getUserComments();
 
-                if (SecurityController::isConnected()) {
-                    foreach ($comments as $comment) { ?>
+                    if (SecurityController::isConnected()) {
+                        foreach ($comments as $comment) { ?>
 
-                        <p class="bg-tertiary p-3 m-5 borderRadius">
-                            <span class="fw-bold">
-                                <?= $comment['comment_pseudo'] ?>
-                            </span> : <br><br>
-                            <span class="p-5"><?= $comment['content'] ?></span> <br><br>
-                            <?= $comment['date_creation'] ?> <br>
-
-                            <?php
-
-                                try {
+                            <p class="bg-tertiary p-3 mt-5 border_radius">
+                                <span class="fw-bold">
+                                    <?= $comment['comment_pseudo'] ?>
+                                </span> : <br><br>
+                                <span class="p-5"><?= $comment['content'] ?></span> <br><br>
+                                <?= $comment['date_creation'] ?> <br>
+                                <?php
                                     if ($_SESSION['pseudo'] == $comment['comment_pseudo'] || $_SESSION['role'] == 1) { ?>
                                         <form action="delete-comment" method="post">
                                             <input type="submit" class="btn btn-outline-danger" name="delete_comment" value="Supprimer le commentaire">
                                             <input type="hidden" name="id_comment" value="<?= $comment['id'] ?>">
                                         </form>
                                     <?php }
-                                } catch (Exception $e) {
-                                    $errorMessage = $e->getMessage();
                                 }
-                            }
-                }else { ?>
-                    <p class="text-center text-danger mt-5">"Vous devez être connecté pour voir les commentaires." </p>
-                <?php
+                    }else { ?>
+                        <p class="text-center text-danger mt-5">"Vous devez être connecté pour voir les commentaires." </p>
+                    <?php
+                    }
+                } catch (Exception $e) {
+                    $errorMessage = $e->getMessage();
                 }
-            } catch (Exception $e) {
-                $errorMessage = $e->getMessage();
-            }
-        ?>
-
+            ?>
+        </div>
     </section>
 
 </section>

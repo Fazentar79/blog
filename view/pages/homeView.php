@@ -38,7 +38,7 @@ ob_start();
 
         <div class="d-flex flex-column flex-md-row justify-content-md-center justify-content-between">
 
-            <div class="home__content">
+
 
                 <section class="text-center text-danger">
 
@@ -50,6 +50,7 @@ ob_start();
 
                 </section>
 
+            <div>
                 <h2 class="fw-bold text-center mb-5">Les dernières news :</h2>
 
                 <?php
@@ -59,12 +60,12 @@ ob_start();
                         $articles = $articlesController->getArticles();
 
                         foreach ($articles as $article) { ?>
-                            <p class="bg-tertiary p-3">
+                            <p class="bg-tertiary p-3 border_radius">
                                 <span class="p-5"><?= $article['content'] ?></span> <br><br>
                                 <?= $article['date_creation'] ?> <br>
                                 <?php
                                 if ($_SESSION['role'] == 1) { ?>
-                                    <form action="delete-article" method="post" class="mt-3 mb-3 border-bottom">
+                                    <form action="delete-article" method="post" class="mt-3 mb-3">
                                         <input type="submit" class="btn btn-outline-danger" name="delete_article" value="Supprimer la news">
                                         <input type="hidden" name="id_article" value="<?= $article['id'] ?>">
                                     </form>

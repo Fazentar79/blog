@@ -8,10 +8,10 @@ ob_start();
 <section>
     <h1 class="mt-5 text-center">Quel univers choisirez-vous ?</h1>
     <section class="container">
-        <div class="mt-5 mb-5 d-flex flex-lg-row flex-column">
-            <div class="p-0 card">
+        <div class="mt-5 d-flex flex-lg-row flex-column">
+            <div class="card mb-3">
                 <a href="fantasy"><img src="../../public/assets/image/fantasy/fantasy02.jpg"
-                                               alt="photo de fantasy" class="card-img h-100"></a>
+                                               alt="photo de fantasy" class="card-img h-100 opacity"></a>
                 <div class="card-header text-center">
                     Fantasy
                 </div>
@@ -21,9 +21,9 @@ ob_start();
                         des personnages ou des phénomènes surnaturels.</p>
                     </div>
             </div>
-            <div class="p-0 card mx-lg-3">
+            <div class="card mx-lg-3 mb-3">
                 <a href="dark-fantasy"><img src="../../public/assets/image/darkFantasy/darkFantasy06.jpg"
-                                               alt="photo de dark fantasy" class="card-img h-100"></a>
+                                               alt="photo de dark fantasy" class="card-img h-100 opacity"></a>
                 <div class="card-header text-center">
                     Dark Fantasy
                 </div>
@@ -32,9 +32,9 @@ ob_start();
                         atmosphère plus sombre, plus violente et plus adulte que la fantasy traditionnelle.</p>
                 </div>
             </div>
-            <div class="p-0 card">
+            <div class="card mb-3">
                 <a href="steampunk"><img src="../../public/assets/image/steampunkFantasy/steampunkFantasy03.jpg"
-                                               alt="photo de steampunk fantasy" class="card-img h-100"></a>
+                                               alt="photo de steampunk fantasy" class="card-img h-100 opacity"></a>
                 <div class="card-header text-center">
                     Steampunk Fantasy
                 </div>
