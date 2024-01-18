@@ -10,17 +10,29 @@ class UserController
     {
         $this->userManager = new UserManager();
     }
+
+    /**
+     * @throws Exception
+     */
+    public function getUser(): false|PDOStatement
+    {
+        return $this->userManager->getUser();
+    }
+
     /**
      * @throws Exception
      */
     public function validationConnection($pseudo): void
     {
         if ($this->userManager->getUserPassword($pseudo)) {
-                $_SESSION['pseudo'] = $pseudo;
-                header('Location: profil');
-            } else {
-                throw new Exception('Pseudo ou mot de passe incorrect.');
-            }
+
+            $_SESSION['pseudo'] = $pseudo;
+            $_SESSION['email'] = $this->userManager->getUserEmail($pseudo);
+            $_SESSION['role'] = $this->userManager->getUserAdmin($pseudo);
+            header('Location: accueil');
+        } else {
+            throw new Exception('Pseudo ou mot de passe incorrect.');
+        }
     }
 
     /**
@@ -28,7 +40,7 @@ class UserController
      */
     public function verificationPseudo($pseudo): void
     {
-        if (!$this->userManager->getUserPseudo($pseudo)) {
+        if (!$this->userManager->getUserPseudo()) {
             $this->validationConnection($pseudo);
         }
     }
@@ -67,7 +79,7 @@ class UserController
     public function registerVerification($pseudo, $email, $password): void
     {
         if (SecurityController::syntaxeEmail($email) === true) {
-            if (!$this->userManager->getUserEmail($email)) {
+            if (!$this->userManager->getCheckUserEmail($email)) {
                 $this->registerAccount($pseudo, $email, $password);
             } else {
                 throw new Exception('Pseudo, email ou password déjà utilisé.');
@@ -80,12 +92,15 @@ class UserController
     /**
      * @throws Exception
      */
-    public function getUser(): string
+    public function suppressAccount($pseudo): void
     {
-        try {
-            return 'Bonjour ' . $_SESSION['pseudo'] . '<br>';
-        } catch (Exception $e) {
-            echo $e->getMessage();
+        if (!$this->userManager->deleteUser($pseudo)) {
+            throw new Exception('Erreur lors de la suppression du compte.');
+        } else {
+            unset($_SESSION['pseudo']);
+            unset($_SESSION['email']);
+            header('Location: connexion');
+            throw new Exception('Votre compte a bien été supprimé.');
         }
     }
 }
@@ -113,12 +128,35 @@ class CommentsController
     /**
      * @throws Exception
      */
-    public function postComment($message): void
+    public function getUserCommentsExist($id): bool
     {
-        $result = $this->commentsManager->postComment($message);
+        return $this->commentsManager->getUserComments($id);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function postComment($comment_pseudo, $message): void
+    {
+        $result = $this->commentsManager->postComment($comment_pseudo, $message);
 
         if (!$result) {
             throw new Exception('Erreur lors de l\'ajout du commentaire.');
+        } else {
+            header('Location: commentaires');
+            exit();
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteComment($id): void
+    {
+        $result = $this->commentsManager->deleteComment($id);
+
+        if (!$result) {
+            throw new Exception('Erreur lors de la suppression du commentaire.');
         } else {
             header('Location: commentaires');
             exit();
@@ -143,11 +181,6 @@ class SecurityController
     public static function isConnected(): bool
     {
         return (!empty($_SESSION['pseudo']));
-    }
-
-    public static function isAdmin(): bool
-    {
-        return (!empty($_SESSION['role'] === 'admin'));
     }
 }
 

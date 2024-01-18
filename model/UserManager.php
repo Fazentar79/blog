@@ -8,6 +8,32 @@ class UserManager extends Manager
      * @throws Exception
      */
 
+    public function getUser(): PDOStatement
+    {
+        $db = $this->getDb();
+        return $db->query('SELECT * FROM user');
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getUserAdmin($pseudo)
+    {
+        $db = $this->getDb();
+        $req = $db->prepare('SELECT role FROM user WHERE pseudo = :pseudo');
+        $req->bindValue(':pseudo', $pseudo);
+        $req->execute();
+
+        if ($req->rowCount() == 1) {
+            $roleDb = $req->fetch();
+            return $roleDb['role'];
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+
     public function getUserPseudo()
     {
         $db = $this->getDb();
@@ -41,7 +67,23 @@ class UserManager extends Manager
     /**
      * @throws Exception
      */
-    public function getUserEmail($email)
+    public function getUserEmail($pseudo)
+    {
+        $db = $this->getDb();
+        $req = $db->prepare('SELECT email FROM user WHERE pseudo = :pseudo');
+        $req->bindValue(':pseudo', $pseudo);
+        $req->execute();
+
+        if ($req->rowCount() > 0) {
+            $emailDb = $req->fetch();
+            return $emailDb['email'];
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function getCheckUserEmail($email)
     {
         $db = $this->getDb();
         $req = $db->prepare('SELECT COUNT(*) AS emailNumber FROM user WHERE email = ?');
@@ -63,5 +105,15 @@ class UserManager extends Manager
         $db = $this->getDb();
         $req = $db->prepare('INSERT INTO user(pseudo, email, password) VALUES(?, ?, ?)');
         return $req->execute([$pseudo, $email, $password]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteUser($pseudo): bool
+    {
+        $db = $this->getDb();
+        $req = $db->prepare('DELETE FROM user WHERE pseudo = ?');
+        return $req->execute([$pseudo]);
     }
 }

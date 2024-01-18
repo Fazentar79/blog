@@ -17,7 +17,7 @@ try {
            require 'view/pages/homeView.php';
             break;
         case 'commentaires':
-            require 'view/pages/newsView.php';
+            require 'view/pages/commentsView.php';
             break;
         case 'univers':
             require 'view/pages/universeView.php';
@@ -81,9 +81,14 @@ try {
                     throw new Exception('Vous devez être connecté pour poster un commentaire !');
                 } else {
                     if (isset($_POST['submit_comment'])) {
-                        if (!empty($_POST['message'])) {
+                        if (!empty($_POST['comment_pseudo']) && !empty($_POST['message'])) {
+                            $comment_pseudo = htmlspecialchars($_POST['comment_pseudo']);
                             $message = htmlspecialchars($_POST['message']);
-                            $commentsController->postComment(htmlspecialchars($message));
+                            if ($comment_pseudo === $_SESSION['pseudo']) {
+                                $commentsController->postComment($comment_pseudo, $message);
+                            }else {
+                                throw new Exception('Le pseudo ne correspond pas à celui de votre profil.');
+                            }
                         }else {
                             throw new Exception('Veuillez remplir tous les champs !');
                         }
@@ -91,7 +96,33 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/newsView.php';
+                require 'view/pages/commentsView.php';
+            }
+            break;
+        case 'suppress-account':
+            try {
+                if (SecurityController::isConnected()) {
+                    $userController->suppressAccount($_SESSION['pseudo']);
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/user/profileUserView.php';
+            }
+            break;
+        case 'delete-comment':
+            try {
+                if (isset($_POST['delete_comment'])) {
+                    $comment_id = htmlspecialchars($_POST['id_comment']);
+
+                    if ($commentsController->getUserCommentsExist($comment_id) || $_SESSION['role'] == 1) {
+                        $commentsController->deleteComment($comment_id);
+                    }else {
+                        throw new Exception('Ce commentaire n\'existe pas ou n\'est pas le vôtre.');
+                    }
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/pages/commentsView.php';
             }
             break;
         case 'fantasy':
@@ -112,5 +143,4 @@ try {
     }
 }catch (Exception $e) {
     $errorMessage = $e->getMessage();
-    require 'view/pages/errorView.php';
 }

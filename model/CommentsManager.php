@@ -9,34 +9,38 @@ class CommentsManager extends Manager
     public function getComments(): PDOStatement
     {
         $db = $this->getDb();
-        return $db->query('SELECT * FROM comments ORDER BY id DESC LIMIT 0, 5');
+        return $db->query('SELECT * FROM comments ORDER BY id DESC');
     }
 
     /**
      * @throws Exception
      */
-    public function getUserComment($id): PDOStatement
+    public function getUserComments($id): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('SELECT * FROM comments WHERE id = ?');
-        $req->execute([$id]);
-
-        if ($req->rowCount() > 0) {
-
-            return $req;
-        } else {
-            throw new Exception('Aucun commentaire trouvé !');
-        }
+        $req = $db->prepare('SELECT id FROM comments WHERE id = ? AND comment_pseudo = ?');
+        $req->execute([$id, $_SESSION['pseudo']]);
+        return $req->rowCount() == 1;
     }
 
     /**
      * @throws Exception
      */
 
-    public function postComment($message): bool
+    public function postComment($comment_pseudo, $message): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('INSERT INTO comments(content) VALUES (?)');
-        return $req->execute([$message]);
+        $req = $db->prepare('INSERT INTO comments(comment_pseudo, content) VALUES (?,?)');
+        return $req->execute([$comment_pseudo, $message]);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function deleteComment($id): bool
+    {
+        $db = $this->getDb();
+        $req = $db->prepare('DELETE FROM comments WHERE id = ?');
+        return $req->execute([$id]);
     }
 }

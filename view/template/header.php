@@ -18,17 +18,24 @@
                         <a href="accueil" class="nav-link">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a href="commentaires" class="nav-link">News</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="univers" class="nav-link">Univers</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="commentaires" class="nav-link">Commentaires</a>
+                    </li>
                     <li class="nav-item">
                         <a href="connexion" id="connection__btn" class="nav-link">
-                            <span class="fa-regular fa-user ms-md-3">
-                            </span>
-                            <span class="fs-6">Inscription / Connection</span>
+                            <?php
+                                if (SecurityController::isConnected()) { ?>
+                                    <span class="fa-regular fa-user ms-md-3">
+                                    </span>
+                                    <span class="fs-6">Profil</span>
+                                <?php }else { ?>
+                                    <span class="fa-regular fa-user ms-md-3">
+                                    </span>
+                                    <span class="fs-6">Inscription / Connection</span>
+                                <?php }
+                            ?>
                         </a>
                     </li>
                 </ul>

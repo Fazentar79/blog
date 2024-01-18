@@ -1144,7 +1144,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="325" parent="1" name="blog_fantasy">
-      <LastIntrospectionLocalTimestamp>2024-01-15.12:49:11</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-18.08:08:38</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="326" parent="1" name="formation_php">
@@ -1192,7 +1192,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
     <column id="340" parent="338" name="id">
-      <AutoIncrement>4</AutoIncrement>
+      <AutoIncrement>12</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1208,43 +1208,54 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="343" parent="338" name="PRIMARY">
+    <column id="343" parent="338" name="comment_pseudo">
+      <DasType>varchar(50)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <index id="344" parent="338" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="344" parent="338" name="PRIMARY">
+    <key id="345" parent="338" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="345" parent="339" name="id">
-      <AutoIncrement>52</AutoIncrement>
+    <column id="346" parent="339" name="id">
+      <AutoIncrement>55</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="346" parent="339" name="pseudo">
+    <column id="347" parent="339" name="pseudo">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="347" parent="339" name="email">
+    <column id="348" parent="339" name="email">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="348" parent="339" name="password">
-      <DasType>varchar(250)|0s</DasType>
+    <column id="349" parent="339" name="role">
+      <DasType>int(11)|0s</DasType>
+      <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="349" parent="339" name="PRIMARY">
+    <column id="350" parent="339" name="password">
+      <DasType>varchar(250)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+    </column>
+    <index id="351" parent="339" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="350" parent="339" name="PRIMARY">
+    <key id="352" parent="339" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

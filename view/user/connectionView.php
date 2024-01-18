@@ -15,6 +15,7 @@ ob_start();
     </p>
 
     <section class="container text-center">
+
         <p class="fs-1 fw-bold mb-5">Connexion</p>
         <p class="mb-5">Veuillez entrer votre email et mot de passe :</p>
 
@@ -33,6 +34,7 @@ ob_start();
                 <a href="inscription">S'inscrire</a>
             </div>
         </form>
+
     </section>
 
 </section>
