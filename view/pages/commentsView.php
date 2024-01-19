@@ -6,7 +6,7 @@ $title = "Commentaires";
 ob_start();
 
 ?>
-<section>
+<section class="container">
 
     <section class="text-center text-danger w-100">
 
@@ -17,30 +17,31 @@ ob_start();
         </p>
 
     </section>
+        <?php
+            if (SecurityController::isConnected()) { ?>
+                <section class="text-center w-100">
 
-    <section class="text-center w-100">
+                    <h1 class="mb-5">Commentaires</h1>
+                    <p>Ajouter un commentaire :</p>
 
-        <h1 class="mb-5">Commentaires</h1>
-        <p>Ajouter un commentaire :</p>
+                </section>
 
-    </section>
+                <section class="w-50 d-block m-auto">
 
-    <section class="w-50 d-block m-auto">
+                        <form action="add-comment" method="post">
+                            <div>
+                                <label for="comment_pseudo" class="form-label"></label>
+                                <input type="text" class="form-control" id="comment_pseudo" name="comment_pseudo" aria-describedby="emailHelp" placeholder="Pseudo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label"></label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Commentaire"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-outline-secondary" name="submit_comment">Publier</button>
+                        </form>
 
-        <form action="add-comment" method="post">
-            <div>
-                <label for="comment_pseudo" class="form-label"></label>
-                <input type="text" class="form-control" id="comment_pseudo" name="comment_pseudo" aria-describedby="emailHelp" placeholder="Pseudo">
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label"></label>
-                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Commentaire"></textarea>
-            </div>
-            <button type="submit" class="btn btn-outline-secondary" name="submit_comment">Publier</button>
-        </form>
-
-    </section>
-
+                </section>
+        <?php } ?>
     <section>
         <div>
             <?php
@@ -67,7 +68,16 @@ ob_start();
                                     <?php }
                                 }
                     }else { ?>
-                        <p class="text-center text-danger mt-5">"Vous devez être connecté pour voir les commentaires." </p>
+
+                        <p class="mt-5">Tu dois être connecté pour accéder à cette page. <br><br>
+                            Si tu n'as pas de compte ou que tu as oublié de te connecter, clic sur le lien ci-dessous :</p><br>
+
+                        <a href="connexion" class="p-5">
+                            <button class="btn btn-outline-secondary border-black">
+                                Connection/Inscription
+                            </button>
+                        </a>
+
                     <?php
                     }
                 } catch (Exception $e) {
