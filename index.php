@@ -161,6 +161,23 @@ try {
                 require 'view/pages/commentsView.php';
             }
             break;
+        case 'modify-comment':
+            try {
+                if (isset($_POST['modify_comment'])) {
+                    $comment_id = htmlspecialchars($_POST['id_comment']);
+                    $modify_UserComment = htmlspecialchars($_POST['modify_UserComment']);
+
+                    if ($commentsController->getUserCommentsExist($comment_id) || $_SESSION['role'] == 1) {
+                        $commentsController->modifyComment($comment_id, $modify_UserComment);
+                    }else {
+                        throw new Exception('Ce commentaire n\'existe pas ou n\'est pas le vôtre.');
+                    }
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/pages/commentsView.php';
+            }
+            break;
         case 'delete-comment':
             try {
                 if (isset($_POST['delete_comment'])) {

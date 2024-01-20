@@ -69,14 +69,14 @@ ob_start();
                                 <?php
                             if (SecurityController::isConnected()) { ?>
                                 <?php if ($_SESSION['role'] == 1) { ?>
-                                        <div class="d-flex mb-5 justify-content-md-start justify-content-between">
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modify">
-                                                Modifier la news
-                                            </button>
-                                            <button type="button" class="btn btn-outline-danger ms-3" data-bs-toggle="modal" data-bs-target="#suppress">
-                                                Supprimer la news
-                                            </button>
-                                        </div>
+                                    <div class="d-flex mb-5 justify-content-md-start justify-content-between">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modify">
+                                            Modifier la news
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger ms-3" data-bs-toggle="modal" data-bs-target="#suppress_news">
+                                            Supprimer la news
+                                        </button>
+                                    </div>
 
                                     <!-- Modal pour modifier les news -->
                                     <div class="modal fade" id="modify" data-bs-backdrop="static">
@@ -108,7 +108,7 @@ ob_start();
                                     </div>
 
                                     <!-- Modal pour supprimer les news -->
-                                    <div class="modal fade" id="suppress" data-bs-backdrop="static">
+                                    <div class="modal fade" id="suppress_news" data-bs-backdrop="static">
                                         <div class="modal-dialog modal-dialog-centered">
 
                                             <div class="modal-content">
@@ -121,7 +121,7 @@ ob_start();
                                                 </div>
 
                                                 <div class="modal-body">
-                                                    <p class="m-0"> Etes-vous sûr de vous de vouloir supprimer la news ?</p>
+                                                    <p class="m-0">Supprimer la news définitivement ?</p>
                                                 </div>
 
                                                 <div class="modal-footer">
@@ -143,9 +143,7 @@ ob_start();
                         $errorMessage = $e->getMessage();
                     }
                 ?>
-
             </div>
-
         </div>
 
     </section>

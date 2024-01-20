@@ -144,6 +144,21 @@ class CommentsController
     /**
      * @throws Exception
      */
+    public function modifyComment($id, $content_modify): void
+    {
+        $result = $this->commentsManager->modifyComment($id, $content_modify);
+
+        if (!$result) {
+            throw new Exception('Erreur lors de la modification du commentaire.');
+        } else {
+            header('Location: commentaires');
+            exit();
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
     public function deleteComment($id): void
     {
         $result = $this->commentsManager->deleteComment($id);

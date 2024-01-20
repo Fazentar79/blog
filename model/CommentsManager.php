@@ -37,6 +37,19 @@ class CommentsManager extends Manager
     /**
      * @throws Exception
      */
+    public function modifyComment($id, $content_modify): bool
+    {
+        $db = $this->getDb();
+        $req = $db->prepare('UPDATE comments SET content = :contentModify WHERE id = :id');
+        return $req->execute([
+            'contentModify' => $content_modify,
+            'id' => $id
+        ]);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function deleteComment($id): bool
     {
         $db = $this->getDb();

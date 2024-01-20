@@ -30,12 +30,40 @@ ob_start();
                 <a href="logout" class="text-decoration-none text-center">
                     <button class="btn btn-outline-secondary mt-5"> Se déconnecter</button>
                 </a>
-                <a href="suppress-account" class="text-decoration-none text-center">
-                    <button class="btn btn-outline-danger mt-5"> Supprimer le compte</button>
-                </a>
+
+                <button type="button" class="btn btn-outline-danger mt-5" data-bs-toggle="modal" data-bs-target="#suppress_account">
+                    Supprimer le compte
+                </button>
 
             </div>
 
+            <!-- Modal pour supprimer le compte -->
+            <div class="modal fade" id="suppress_account" data-bs-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered">
+
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Supprimer le compte ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                <span class="visually-hidden">Fermer</span>
+                            </button>
+                        </div>
+
+
+                        <div class="modal-body">
+                            <p class="m-0">Est-tu sûr de vouloir supprimer le compte ?</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <a href="suppress-account" class="text-decoration-none text-center">
+                                <button type="button" class="btn btn-outline-danger">Supprimer le compte</button>
+                            </a>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </section>
