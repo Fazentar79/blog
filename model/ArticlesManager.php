@@ -36,6 +36,19 @@ class ArticlesManager extends Manager
     /**
      * @throws Exception
      */
+    public function modifyArticle($id, $content_modify): bool
+    {
+        $db = $this->getDb();
+        $req = $db->prepare('UPDATE articles SET content = :contentModify WHERE id = :id');
+        return $req->execute([
+            'contentModify' => $content_modify,
+            'id' => $id
+        ]);
+    }
+
+    /**
+     * @throws Exception
+     */
     public function deleteArticle($id): bool
     {
         $db = $this->getDb();

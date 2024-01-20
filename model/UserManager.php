@@ -7,16 +7,6 @@ class UserManager extends Manager
     /**
      * @throws Exception
      */
-
-    public function getUser(): PDOStatement
-    {
-        $db = $this->getDb();
-        return $db->query('SELECT * FROM user');
-    }
-
-    /**
-     * @throws Exception
-     */
     public function getUserAdmin($pseudo)
     {
         $db = $this->getDb();

@@ -201,6 +201,21 @@ class ArticlesController
     /**
      * @throws Exception
      */
+    public function modifyArticle($id, $content_modify): void
+    {
+        $result = $this->articlesManager->modifyArticle($id, $content_modify);
+
+        if (!$result) {
+            throw new Exception('Erreur lors de la modification de l\'article.');
+        } else {
+            header('Location: accueil');
+            exit();
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
     public function deleteArticle($id): void
     {
         $result = $this->articlesManager->deleteArticle($id);

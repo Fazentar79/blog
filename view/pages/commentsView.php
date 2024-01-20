@@ -61,10 +61,16 @@ ob_start();
                                 <?= $comment['date_creation'] ?> <br>
                                 <?php
                                     if ($_SESSION['pseudo'] == $comment['comment_pseudo'] || $_SESSION['role'] == 1) { ?>
-                                        <form action="delete-comment" method="post">
-                                            <input type="submit" class="btn btn-outline-danger" name="delete_comment" value="Supprimer le commentaire">
-                                            <input type="hidden" name="id_comment" value="<?= $comment['id'] ?>">
-                                        </form>
+                                        <div class="d-flex justify-content-md-start justify-content-between">
+                                            <form action="modify-comment" method="post">
+                                                <input type="submit" class="btn btn-outline-secondary" name="modify_comment" value="Modifier le commentaire">
+                                                <input type="hidden" name="id_comment" value="<?= $comment['id'] ?>">
+                                            </form>
+                                            <form action="delete-comment" method="post" class="ms-md-5">
+                                                <input type="submit" class="btn btn-outline-danger" name="delete_comment" value="Supprimer le commentaire">
+                                                <input type="hidden" name="id_comment" value="<?= $comment['id'] ?>">
+                                            </form>
+                                        </div>
                                     <?php }
                                 }
                     }else { ?>

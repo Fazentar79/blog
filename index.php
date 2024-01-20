@@ -30,29 +30,6 @@ try {
                 require 'view/user/connectionView.php';
             }
             break;
-        case 'connection':
-            try {
-                if (SecurityController::isConnected()) {
-                    throw new Exception('Vous êtes déjà connecté !');
-                }else
-                {
-                    if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
-                        $pseudo = htmlspecialchars($_POST['pseudo']);
-                        $password = htmlspecialchars($_POST['password']);
-                        $userController->verificationPseudo($pseudo);
-                    }else {
-                        throw new Exception('Veuillez remplir tous les champs !');
-                    }
-                }
-            }catch (Exception $e) {
-                $errorMessage = $e->getMessage();
-                require 'view/user/connectionView.php';
-            }
-
-            break;
-        case 'profil':
-            require 'view/user/profileUserView.php';
-            break;
         case 'inscription':
             require 'view/user/registrationView.php';
             break;
@@ -64,7 +41,7 @@ try {
                     $password = htmlspecialchars(SecurityController::encrypt($_POST['password']));
                     $userController->registerVerification($pseudo, $email, $password);
                 }else {
-                    throw new Exception('Veuillez remplir tous les champs !');
+                    throw new Exception('Veuillez remplir tous les champs.');
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
@@ -76,48 +53,27 @@ try {
             break;
         case 'logout':
             $userController->logout();
-        case 'add-news':
-        try {
-            if (isset($_POST['submit_news'])) {
-                if (!empty($_POST['news'])) {
-                    $news = htmlspecialchars($_POST['news']);
-                    if ($_SESSION['role'] == 1) {
-                        $articlesController->addArticle($news);
-                    }else {
-                            throw new Exception('Vous n\'avez pas les droits pour publier une news.');
-                    }
-                }else {
-                    throw new Exception('Veuillez remplir tous les champs !');
-                }
-            }
-        }catch (Exception $e) {
-            $errorMessage = $e->getMessage();
-            require 'view/pages/homeView.php';
-        }
-            break;
-        case 'add-comment':
+        case 'connection':
             try {
-                if (!SecurityController::isConnected()) {
-                    throw new Exception('Vous devez être connecté pour poster un commentaire !');
-                } else {
-                    if (isset($_POST['submit_comment'])) {
-                        if (!empty($_POST['comment_pseudo']) && !empty($_POST['message'])) {
-                            $comment_pseudo = htmlspecialchars($_POST['comment_pseudo']);
-                            $message = htmlspecialchars($_POST['message']);
-                            if ($comment_pseudo === $_SESSION['pseudo']) {
-                                $commentsController->postComment($comment_pseudo, $message);
-                            }else {
-                                throw new Exception('Le pseudo ne correspond pas à celui de votre profil.');
-                            }
-                        }else {
-                            throw new Exception('Veuillez remplir tous les champs !');
-                        }
+                if (SecurityController::isConnected()) {
+                    throw new Exception('Vous êtes déjà connecté.');
+                }else
+                {
+                    if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
+                        $pseudo = htmlspecialchars($_POST['pseudo']);
+                        $password = htmlspecialchars($_POST['password']);
+                        $userController->verificationPseudo($pseudo);
+                    }else {
+                        throw new Exception('Veuillez remplir tous les champs.');
                     }
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/commentsView.php';
+                require 'view/user/connectionView.php';
             }
+            break;
+        case 'profil':
+            require 'view/user/profileUserView.php';
             break;
         case 'suppress-account':
             try {
@@ -129,12 +85,48 @@ try {
                 require 'view/user/profileUserView.php';
             }
             break;
+        case 'add-news':
+        try {
+            if (isset($_POST['submit_news'])) {
+                if (!empty($_POST['news'])) {
+                    $news = htmlspecialchars($_POST['news']);
+                    if ($_SESSION['role'] == 1) {
+                        $articlesController->addArticle($news);
+                    }else {
+                            throw new Exception('Vous n\'avez pas les droits pour publier une news.');
+                    }
+                }else {
+                    throw new Exception('Veuillez remplir tous les champs.');
+                }
+            }
+        }catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            require 'view/pages/homeView.php';
+        }
+            break;
+        case 'modify-article':
+            try {
+                if (isset($_POST['modify_article'])) {
+                    $article_id = htmlspecialchars($_POST['id_article']);
+                    $modify_news = htmlspecialchars($_POST['modify_news']);
+
+                    if ($articlesController->getNewsArticles($article_id) && $_SESSION['role'] == 1) {
+                        $articlesController->modifyArticle($article_id, $modify_news);
+                    }else {
+                        throw new Exception('Cette news n\'existe pas ou une erreur est survenue.');
+                    }
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/pages/homeView.php';
+            }
+            break;
         case 'delete-article':
             try {
                 if (isset($_POST['delete_article'])) {
                     $article_id = htmlspecialchars($_POST['id_article']);
 
-                    if ($articlesController->getNewsArticles($article_id) || $_SESSION['role'] == 1) {
+                    if ($articlesController->getNewsArticles($article_id) && $_SESSION['role'] == 1) {
                         $articlesController->deleteArticle($article_id);
                     }else {
                         throw new Exception('Cette news n\'existe pas ou une erreur est survenue.');
@@ -143,6 +135,30 @@ try {
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
                 require 'view/pages/homeView.php';
+            }
+            break;
+        case 'add-comment':
+            try {
+                if (!SecurityController::isConnected()) {
+                    throw new Exception('Vous devez être connecté pour poster un commentaire.');
+                } else {
+                    if (isset($_POST['submit_comment'])) {
+                        if (!empty($_POST['comment_pseudo']) && !empty($_POST['message'])) {
+                            $comment_pseudo = htmlspecialchars($_POST['comment_pseudo']);
+                            $message = htmlspecialchars($_POST['message']);
+                            if ($comment_pseudo === $_SESSION['pseudo']) {
+                                $commentsController->postComment($comment_pseudo, $message);
+                            }else {
+                                throw new Exception('Le pseudo ne correspond pas à celui de votre profil.');
+                            }
+                        }else {
+                            throw new Exception('Veuillez remplir tous les champs.');
+                        }
+                    }
+                }
+            }catch (Exception $e) {
+                $errorMessage = $e->getMessage();
+                require 'view/pages/commentsView.php';
             }
             break;
         case 'delete-comment':
@@ -175,7 +191,7 @@ try {
             break;
         default:
             header('Location: erreur');
-            throw new Exception($errorMessage('Page introuvable !'));
+            throw new Exception($errorMessage('Page introuvable.'));
     }
 }catch (Exception $e) {
     $errorMessage = $e->getMessage();
