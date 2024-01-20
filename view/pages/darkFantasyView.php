@@ -14,7 +14,7 @@ ob_start();
                                                                                            alt="photo de dark fantasy" class="card-img h-100 opacity"></a>
             </div>
             <div class="col">
-                <a href="../../public/assets/image/darkFantasy/darkFantasy03.jpg" target="_blank"><img src="../../public/assets/image/darkFantasy/darkFantasy03.jpg"
+                <a href="../../public/assets/image/darkFantasy/darkFantasy02.jpg" target="_blank"><img src="../../public/assets/image/darkFantasy/darkFantasy02.jpg"
                                                                                            alt="photo de dark fantasy" class="card-img h-100 opacity"></a>
             </div>
             <div class="col">
