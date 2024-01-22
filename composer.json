@@ -7,11 +7,6 @@
             "email": "hot.frederic@orange.fr"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "App\\": "model/"
-        }
-    },
     "require": {
         "ext-pdo": "*",
         "vendor/twbs/bootstrap": "5.3.2",
