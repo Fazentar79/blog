@@ -1,6 +1,6 @@
 <?php
 
-global $errorMessage;
+global $errorMessage, $title;
 $title = "Accueil";
 
 ob_start();
@@ -9,7 +9,7 @@ ob_start();
 <section class="container">
 
     <section class="w-100 pt-5">
-
+        <!-- Displays different text on the main page depending on the connected profile (Unregistered, registered and admin) -->
         <?php
             if (SecurityController::isConnected()) {
                 if ($_SESSION['role'] == 1) { ?>
@@ -23,15 +23,14 @@ ob_start();
                     <p class="fs-5 mt-5 p-md-5">
                         N'hésites pas à regarder les dernières news et les nouvelles images. Et donne ton avis dans la section commentaires.
                     </p>
-                    <h3 class="text-center">Bienvenue dans l'aventure !</h3>
                 <?php }
             }else { ?>
 
                 <h1 class="text-center fw-bold">Bienvenue sur mon blog !</h1>
 
                 <p class="fs-5 mt-5 p-md-5">
-                    Vous trouverez ici des images sur les différents univers de la Fantasy.
-                    Vous pouvez vous inscrire pour donner votre avis ou voir la gallerie d'image. <br>
+                    Tu trouveras ici des images sur les différents univers de la Fantasy.
+                    Tu peux t'inscrire pour donner votre avis ou voir la gallerie d'image. <br>
                 </p>
 
             <?php }
@@ -57,7 +56,7 @@ ob_start();
                 <h2 class="text-center my-5 fw-bold">Les dernières news :</h2>
 
                 <?php
-
+                    // Affiche les news
                     try {
                         $articlesController = new ArticlesController();
                         $articles = $articlesController->getArticles();
@@ -78,7 +77,7 @@ ob_start();
                                         </button>
                                     </div>
 
-                                    <!-- Modal pour modifier les news -->
+                                    <!-- Show news -->
                                     <div class="modal fade" id="modify" data-bs-backdrop="static">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
@@ -107,7 +106,7 @@ ob_start();
                                         </div>
                                     </div>
 
-                                    <!-- Modal pour supprimer les news -->
+                                    <!-- Modal to delete news -->
                                     <div class="modal fade" id="suppress_news" data-bs-backdrop="static">
                                         <div class="modal-dialog modal-dialog-centered">
 
@@ -151,6 +150,7 @@ ob_start();
     <section class="mt-5">
 
         <?php
+        // Form to add news by the admin
             try {
                 if (SecurityController::isConnected()) {
                     if ($_SESSION['role'] == 1) {
@@ -177,6 +177,7 @@ ob_start();
 </section>
 
 <?php
+
 $content = ob_get_clean();
 
 require_once 'view/template/base.php';

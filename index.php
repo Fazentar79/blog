@@ -14,25 +14,39 @@ $page = $_GET['page'] ?? 'accueil';
 
 try {
     switch ($page) {
+
+        // Links to site pages
         case 'accueil':
-           require 'view/pages/homeView.php';
+           require_once 'view/pages/homeView.php';
             break;
         case 'commentaires':
-            require 'view/pages/commentsView.php';
+            require_once 'view/pages/commentsView.php';
             break;
         case 'univers':
-            require 'view/pages/universeView.php';
+            require_once 'view/pages/universeView.php';
             break;
         case 'connexion':
             if (SecurityController::isConnected()) {
-                require 'view/user/profileUserView.php';
+                require_once 'view/user/profileUserView.php';
             }else {
-                require 'view/user/connectionView.php';
+                require_once 'view/user/connectionView.php';
             }
             break;
         case 'inscription':
-            require 'view/user/registrationView.php';
+            require_once 'view/user/registrationView.php';
             break;
+        // Link to each gallery
+        case 'fantasy':
+            require_once 'view/pages/fantasyView.php';
+            break;
+        case 'dark-fantasy':
+            require_once 'view/pages/darkFantasyView.php';
+            break;
+        case 'steampunk':
+            require_once 'view/pages/steampunkView.php';
+            break;
+
+        // Registration and login to user account
         case 'registration':
             try {
                 if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['password'])) {
@@ -49,7 +63,7 @@ try {
             }
             break;
         case 'validation-inscription':
-            require 'view/pages/registrationValidateView.php';
+            require_once 'view/pages/registrationValidateView.php';
             break;
         case 'logout':
             $userController->logout();
@@ -69,9 +83,11 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/user/connectionView.php';
+                require_once 'view/user/connectionView.php';
             }
             break;
+
+        // User account management
         case 'profil':
             require 'view/user/profileUserView.php';
             break;
@@ -82,9 +98,11 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/user/profileUserView.php';
+                require_once 'view/user/profileUserView.php';
             }
             break;
+
+        // Managing articles and comments
         case 'add-news':
         try {
             if (isset($_POST['submit_news'])) {
@@ -101,7 +119,7 @@ try {
             }
         }catch (Exception $e) {
             $errorMessage = $e->getMessage();
-            require 'view/pages/homeView.php';
+            require_once 'view/pages/homeView.php';
         }
             break;
         case 'modify-article':
@@ -118,7 +136,7 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/homeView.php';
+                require_once 'view/pages/homeView.php';
             }
             break;
         case 'delete-article':
@@ -134,7 +152,7 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/homeView.php';
+                require_once 'view/pages/homeView.php';
             }
             break;
         case 'add-comment':
@@ -158,7 +176,7 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/commentsView.php';
+                require_once 'view/pages/commentsView.php';
             }
             break;
         case 'modify-comment':
@@ -175,7 +193,7 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/commentsView.php';
+                require_once 'view/pages/commentsView.php';
             }
             break;
         case 'delete-comment':
@@ -191,24 +209,17 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/pages/commentsView.php';
+                require_once 'view/pages/commentsView.php';
             }
             break;
-        case 'fantasy':
-            require 'view/pages/fantasyView.php';
-            break;
-        case 'dark-fantasy':
-            require 'view/pages/darkFantasyView.php';
-            break;
-        case 'steampunk':
-            require 'view/pages/steampunkView.php';
-            break;
+
+        // Error management
         case 'erreur':
-            require 'view/pages/errorView.php';
+            require_once 'view/pages/errorView.php';
             break;
         default:
             header('Location: erreur');
-            throw new Exception($errorMessage('Page introuvable.'));
+            throw new Exception('Page introuvable.');
     }
 }catch (Exception $e) {
     $errorMessage = $e->getMessage();

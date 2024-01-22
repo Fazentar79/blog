@@ -26,6 +26,7 @@
                     <li class="nav-item">
                         <a href="connexion" id="connection__btn" class="nav-link">
                             <?php
+                            // Change the button if the user is connected or not
                                 if (SecurityController::isConnected()) { ?>
                                     <span class="fa-regular fa-user ms-md-3">
                                     </span>

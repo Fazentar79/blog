@@ -37,7 +37,7 @@ ob_start();
 
             </div>
 
-            <!-- Modal pour supprimer le compte -->
+            <!-- Modal to delete account -->
             <div class="modal fade" id="suppress_account" data-bs-backdrop="static">
                 <div class="modal-dialog modal-dialog-centered">
 

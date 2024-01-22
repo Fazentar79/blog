@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "App\\": "App/model/"
+            "App\\": "model/"
         }
     },
     "require": {

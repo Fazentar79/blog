@@ -6,6 +6,7 @@ ob_start();
 ?>
 <section class="container">
     <?php
+    // If the user is logged in, the universes are displayed
         if (SecurityController::isConnected()) { ?>
 
             <h1 class="mt-5 text-center">Quel univers choisirez-vous ?</h1>
@@ -49,6 +50,7 @@ ob_start();
 
     <?php
     }else { ?>
+        <!-- Displays this message if the person is not logged in/registered -->
         <p class="mt-5">Tu dois être connecté pour accéder à cette page. <br><br>
             Si tu n'as pas de compte ou que tu as oublié de te connecter, clic sur le lien ci-dessous :</p><br>
 

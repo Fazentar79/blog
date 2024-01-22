@@ -15,6 +15,16 @@ class UserController
     /**
      * @throws Exception
      */
+    public function verificationPseudo($pseudo): void
+    {
+        if (!$this->userManager->getUserPseudo()) {
+            $this->validationConnection($pseudo);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
     public function validationConnection($pseudo): void
     {
         if ($this->userManager->getUserPassword($pseudo)) {
@@ -25,16 +35,6 @@ class UserController
             header('Location: accueil');
         } else {
             throw new Exception('Pseudo ou mot de passe incorrect.');
-        }
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function verificationPseudo($pseudo): void
-    {
-        if (!$this->userManager->getUserPseudo()) {
-            $this->validationConnection($pseudo);
         }
     }
 
@@ -56,19 +56,6 @@ class UserController
     /**
      * @throws Exception
      */
-    private function registerAccount($pseudo, $email, $password): void
-    {
-        if (!$this->userManager->addUser($pseudo, $email, $password)) {
-            throw new Exception('Erreur lors de l\'inscription.');
-        } else {
-            header('Location: validation-inscription');
-            exit();
-        }
-    }
-
-    /**
-     * @throws Exception
-     */
     public function registerVerification($pseudo, $email, $password): void
     {
         if (SecurityController::syntaxeEmail($email) === true) {
@@ -79,6 +66,19 @@ class UserController
             }
         } else {
             throw new Exception('Email invalide !');
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function registerAccount($pseudo, $email, $password): void
+    {
+        if (!$this->userManager->addUser($pseudo, $email, $password)) {
+            throw new Exception('Erreur lors de l\'inscription.');
+        } else {
+            header('Location: validation-inscription');
+            exit();
         }
     }
 

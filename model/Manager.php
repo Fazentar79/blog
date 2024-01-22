@@ -15,6 +15,7 @@ class Manager
         return self::$db;
     }
 
+    // Connection to the database avoiding duplicate connections
     /**
      * @throws Exception
      */
