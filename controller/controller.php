@@ -106,9 +106,6 @@ class CommentsController
     {
         $this->commentsManager = new CommentsManager();
     }
-    /**
-     * @throws Exception
-     */
 
     /**
      * @throws Exception
