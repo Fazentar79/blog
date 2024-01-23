@@ -143,14 +143,18 @@ ob_start();
                                     }
                     }else { ?>
                         <!-- Show this message if the user is not logged in -->
-                        <p class="mt-5">Tu dois être connecté pour accéder à cette page. <br><br>
-                            Si tu n'as pas de compte ou que tu as oublié de te connecter, clic sur le lien ci-dessous :</p><br>
+                        <div class="container d-flex flex-column">
+                            <div class="m-auto">
+                                <p class="mt-5">Tu dois être connecté pour accéder à cette page. <br><br>
+                                    Si tu n'as pas de compte ou que tu as oublié de te connecter, clic sur le lien ci-dessous :</p><br>
 
-                        <a href="connexion" class="p-5">
-                            <button class="btn btn-outline-secondary border-black">
-                                Connection/Inscription
-                            </button>
-                        </a>
+                                <a href="connexion" class="p-5">
+                                    <button class="btn btn-outline-secondary border-black">
+                                        Connection/Inscription
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
 
                     <?php
                     }
