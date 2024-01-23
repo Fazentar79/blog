@@ -18,13 +18,13 @@
 
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target="#menu">
 
-<?= require_once "view/template/header.php" ?>
+<?php require_once "view/template/header.php" ?>
 
 <main class="container d-flex flex-grow-1">
     <?= $content ?>
 </main>
 
-<?= require_once "view/template/footer.php" ?>
+<?php require_once "view/template/footer.php" ?>
 </body>
 
 </html>
