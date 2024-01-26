@@ -59,7 +59,7 @@ try {
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
-                require 'view/user/registrationView.php';
+                require_once 'view/user/registrationView.php';
             }
             break;
         case 'validation-inscription':
@@ -67,19 +67,19 @@ try {
             break;
         case 'logout':
             $userController->logout();
+            break;
         case 'connection':
             try {
                 if (SecurityController::isConnected()) {
                     throw new Exception('Vous êtes déjà connecté.');
-                }else
-                {
-                    if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
-                        $pseudo = htmlspecialchars($_POST['pseudo']);
-                        $password = htmlspecialchars($_POST['password']);
-                        $userController->verificationPseudo($pseudo);
-                    }else {
-                        throw new Exception('Veuillez remplir tous les champs.');
-                    }
+                }
+
+                if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
+                    $pseudo = htmlspecialchars($_POST['pseudo']);
+                    $password = htmlspecialchars($_POST['password']);
+                    $userController->verificationPseudo($pseudo);
+                }else {
+                    throw new Exception('Veuillez remplir tous les champs.');
                 }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
@@ -89,7 +89,7 @@ try {
 
         // User account management
         case 'profil':
-            require 'view/user/profileUserView.php';
+            require_once 'view/user/profileUserView.php';
             break;
         case 'suppress-account':
             try {
@@ -108,7 +108,7 @@ try {
             if (isset($_POST['submit_news'])) {
                 if (!empty($_POST['news'])) {
                     $news = htmlspecialchars($_POST['news']);
-                    if ($_SESSION['role'] == 1) {
+                    if ($_SESSION['role'] === 1) {
                         $articlesController->addArticle($news);
                     }else {
                             throw new Exception('Vous n\'avez pas les droits pour publier une news.');
@@ -128,7 +128,7 @@ try {
                     $article_id = htmlspecialchars($_POST['id_article']);
                     $modify_news = htmlspecialchars($_POST['modify_news']);
 
-                    if ($articlesController->getNewsArticles($article_id) && $_SESSION['role'] == 1) {
+                    if ($articlesController->getNewsArticles($article_id) && $_SESSION['role'] === 1) {
                         $articlesController->modifyArticle($article_id, $modify_news);
                     }else {
                         throw new Exception('Cette news n\'existe pas ou une erreur est survenue.');
@@ -144,7 +144,7 @@ try {
                 if (isset($_POST['delete_article'])) {
                     $article_id = htmlspecialchars($_POST['id_article']);
 
-                    if ($articlesController->getNewsArticles($article_id) && $_SESSION['role'] == 1) {
+                    if ($articlesController->getNewsArticles($article_id) && $_SESSION['role'] === 1) {
                         $articlesController->deleteArticle($article_id);
                     }else {
                         throw new Exception('Cette news n\'existe pas ou une erreur est survenue.');
@@ -159,19 +159,19 @@ try {
             try {
                 if (!SecurityController::isConnected()) {
                     throw new Exception('Vous devez être connecté pour poster un commentaire.');
-                } else {
-                    if (isset($_POST['submit_comment'])) {
-                        if (!empty($_POST['comment_pseudo']) && !empty($_POST['message'])) {
-                            $comment_pseudo = htmlspecialchars($_POST['comment_pseudo']);
-                            $message = htmlspecialchars($_POST['message']);
-                            if ($comment_pseudo === $_SESSION['pseudo']) {
-                                $commentsController->postComment($comment_pseudo, $message);
-                            }else {
-                                throw new Exception('Le pseudo ne correspond pas à celui de votre profil.');
-                            }
+                }
+
+                if (isset($_POST['submit_comment'])) {
+                    if (!empty($_POST['comment_pseudo']) && !empty($_POST['message'])) {
+                        $comment_pseudo = htmlspecialchars($_POST['comment_pseudo']);
+                        $message = htmlspecialchars($_POST['message']);
+                        if ($comment_pseudo === $_SESSION['pseudo']) {
+                            $commentsController->postComment($comment_pseudo, $message);
                         }else {
-                            throw new Exception('Veuillez remplir tous les champs.');
+                            throw new Exception('Le pseudo ne correspond pas à celui de votre profil.');
                         }
+                    }else {
+                        throw new Exception('Veuillez remplir tous les champs.');
                     }
                 }
             }catch (Exception $e) {
@@ -185,7 +185,7 @@ try {
                     $comment_id = htmlspecialchars($_POST['id_comment']);
                     $modify_UserComment = htmlspecialchars($_POST['modify_UserComment']);
 
-                    if ($commentsController->getUserCommentsExist($comment_id) || $_SESSION['role'] == 1) {
+                    if ($commentsController->getUserCommentsExist($comment_id) || $_SESSION['role'] === 1) {
                         $commentsController->modifyComment($comment_id, $modify_UserComment);
                     }else {
                         throw new Exception('Ce commentaire n\'existe pas ou n\'est pas le vôtre.');
@@ -201,7 +201,7 @@ try {
                 if (isset($_POST['delete_comment'])) {
                     $comment_id = htmlspecialchars($_POST['id_comment']);
 
-                    if ($commentsController->getUserCommentsExist($comment_id) || $_SESSION['role'] == 1) {
+                    if ($commentsController->getUserCommentsExist($comment_id) || $_SESSION['role'] === 1) {
                         $commentsController->deleteComment($comment_id);
                     }else {
                         throw new Exception('Ce commentaire n\'existe pas ou n\'est pas le vôtre.');

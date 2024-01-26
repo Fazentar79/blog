@@ -31,7 +31,8 @@ ob_start();
                     <button class="btn btn-outline-secondary mt-5"> Se déconnecter</button>
                 </a>
 
-                <button type="button" class="btn btn-outline-danger mt-5" data-bs-toggle="modal" data-bs-target="#suppress_account">
+                <button type="button" class="btn btn-outline-danger mt-5"
+                        data-bs-toggle="modal" data-bs-target="#suppress_account">
                     Supprimer le compte
                 </button>
 
@@ -59,7 +60,8 @@ ob_start();
                             <a href="suppress-account" class="text-decoration-none text-center">
                                 <button type="button" class="btn btn-outline-danger">Supprimer le compte</button>
                             </a>
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="button" class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal">Annuler</button>
                         </div>
                     </div>
                 </div>
@@ -75,3 +77,4 @@ $content = ob_get_clean();
 
 require_once "view/template/base.php";
 ?>
+

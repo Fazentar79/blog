@@ -47,10 +47,10 @@ class UserController
 
         if ($_SESSION['pseudo']) {
             throw new Exception('Erreur lors de la déconnexion.');
-        }else {
-            header('Location: connexion');
-            throw new Exception('Vous êtes déconnecté.');
         }
+
+        header('Location: connexion');
+        exit();
     }
 
     /**
@@ -76,10 +76,10 @@ class UserController
     {
         if (!$this->userManager->addUser($pseudo, $email, $password)) {
             throw new Exception('Erreur lors de l\'inscription.');
-        } else {
-            header('Location: validation-inscription');
-            exit();
         }
+
+        header('Location: validation-inscription');
+        exit();
     }
 
     /**
@@ -89,12 +89,11 @@ class UserController
     {
         if (!$this->userManager->deleteUser($pseudo)) {
             throw new Exception('Erreur lors de la suppression du compte.');
-        } else {
-            unset($_SESSION['pseudo']);
-            unset($_SESSION['email']);
-            header('Location: connexion');
-            throw new Exception('Votre compte a bien été supprimé.');
         }
+
+        unset($_SESSION['pseudo'], $_SESSION['email']);
+        header('Location: connexion');
+        throw new Exception('Votre compte a bien été supprimé.');
     }
 }
 
@@ -132,10 +131,10 @@ class CommentsController
 
         if (!$result) {
             throw new Exception('Erreur lors de l\'ajout du commentaire.');
-        } else {
-            header('Location: commentaires');
-            exit();
         }
+
+        header('Location: commentaires');
+        exit();
     }
 
     /**
@@ -147,10 +146,10 @@ class CommentsController
 
         if (!$result) {
             throw new Exception('Erreur lors de la modification du commentaire.');
-        } else {
-            header('Location: commentaires');
-            exit();
         }
+
+        header('Location: commentaires');
+        exit();
     }
 
     /**
@@ -162,10 +161,10 @@ class CommentsController
 
         if (!$result) {
             throw new Exception('Erreur lors de la suppression du commentaire.');
-        } else {
-            header('Location: commentaires');
-            exit();
         }
+
+        header('Location: commentaires');
+        exit();
     }
 }
 
@@ -204,10 +203,10 @@ class ArticlesController
 
         if (!$result) {
             throw new Exception('Erreur lors de l\'ajout de l\'article.');
-        } else {
-            header('Location: accueil');
-            exit();
         }
+
+        header('Location: accueil');
+        exit();
     }
 
     /**
@@ -219,10 +218,10 @@ class ArticlesController
 
         if (!$result) {
             throw new Exception('Erreur lors de la modification de l\'article.');
-        } else {
-            header('Location: accueil');
-            exit();
         }
+
+        header('Location: accueil');
+        exit();
     }
 
     /**
@@ -234,10 +233,10 @@ class ArticlesController
 
         if (!$result) {
             throw new Exception('Erreur lors de la suppression de l\'article.');
-        } else {
-            header('Location: accueil');
-            exit();
         }
+
+        header('Location: accueil');
+        exit();
     }
 }
 
@@ -257,7 +256,7 @@ class SecurityController
 
     public static function isConnected(): bool
     {
-        return (!empty($_SESSION['pseudo']));
+        return !empty($_SESSION['pseudo']);
     }
 }
 

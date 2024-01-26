@@ -8,8 +8,7 @@ class ArticlesManager extends Manager
      */
     public function getArticles(): PDOStatement
     {
-        $db = $this->getDb();
-        return $db->query('SELECT * FROM articles ORDER BY id DESC LIMIT 0, 5');
+        return $this->getDb()->query('SELECT * FROM articles ORDER BY id DESC LIMIT 0, 5');
     }
 
     /**
@@ -20,7 +19,7 @@ class ArticlesManager extends Manager
         $db = $this->getDb();
         $req = $db->prepare('SELECT id FROM articles WHERE id = ?');
         $req->execute([$id]);
-        return $req->rowCount() == 1;
+        return $req->rowCount() === 1;
     }
 
     /**
@@ -29,8 +28,7 @@ class ArticlesManager extends Manager
     public function addArticle($news): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('INSERT INTO articles(content) VALUES (?)');
-        return $req->execute([$news]);
+        return $db->prepare('INSERT INTO articles(content) VALUES (?)')->execute([$news]);
     }
 
     /**
@@ -52,7 +50,6 @@ class ArticlesManager extends Manager
     public function deleteArticle($id): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('DELETE FROM articles WHERE id = ?');
-        return $req->execute([$id]);
+        return $db->prepare('DELETE FROM articles WHERE id = ?')->execute([$id]);
     }
 }

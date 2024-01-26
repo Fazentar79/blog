@@ -19,7 +19,8 @@ ob_start();
                             Fantasy
                         </div>
                         <div class="card-body">
-                            <p class="card-text">La fantasy est un genre littéraire présentant un ou plusieurs éléments surnaturels
+                            <p class="card-text">La fantasy est un genre littéraire
+                                présentant un ou plusieurs éléments surnaturels
                                 qui relèvent souvent du mythe et qui sont souvent incarnés par des créatures,
                                 des personnages ou des phénomènes surnaturels.</p>
                             </div>
@@ -31,18 +32,21 @@ ob_start();
                             Dark Fantasy
                         </div>
                         <div class="card-body">
-                            <p class="card-text">La dark fantasy est un sous-genre de la fantasy qui se caractérise par une
+                            <p class="card-text">La dark fantasy est un sous-genre
+                                de la fantasy qui se caractérise par une
                                 atmosphère plus sombre, plus violente et plus adulte que la fantasy traditionnelle.</p>
                         </div>
                     </div>
                     <div class="card mb-3">
                         <a href="steampunk"><img src="../../public/assets/image/steampunkFantasy/steampunkFantasy03.jpg"
-                                                       alt="photo de steampunk fantasy" class="card-img h-100 opacity"></a>
+                                                       alt="photo de steampunk fantasy"
+                                                 class="card-img h-100 opacity"></a>
                         <div class="card-header text-center">
                             Steampunk Fantasy
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Le steampunk est un genre de fantasy qui mêle des éléments du roman policier et de
+                            <p class="card-text">Le steampunk est un genre de fantasy
+                                qui mêle des éléments du roman policier et de
                                 la science-fiction, ainsi que des aspects de la fantasy.</p>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ class UserManager extends Manager
         $req->bindValue(':pseudo', $pseudo);
         $req->execute();
 
-        if ($req->rowCount() == 1) {
+        if ($req->rowCount() === 1) {
             $roleDb = $req->fetch();
             return $roleDb['role'];
         }
@@ -80,7 +80,7 @@ class UserManager extends Manager
         $req->execute([$email]);
 
         while($emailDb = $req->fetch()) {
-            if ($emailDb['emailNumber'] != 0) {
+            if ($emailDb['emailNumber'] !== 0) {
                 return true;
             }
         }
@@ -93,8 +93,8 @@ class UserManager extends Manager
     public function addUser($pseudo, $email, $password): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('INSERT INTO user(pseudo, email, password) VALUES(?, ?, ?)');
-        return $req->execute([$pseudo, $email, $password]);
+        return $db->prepare
+        ('INSERT INTO user(pseudo, email, password) VALUES(?, ?, ?)')->execute([$pseudo, $email, $password]);
     }
 
     /**
@@ -103,7 +103,6 @@ class UserManager extends Manager
     public function deleteUser($pseudo): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('DELETE FROM user WHERE pseudo = ?');
-        return $req->execute([$pseudo]);
+        return $db->prepare('DELETE FROM user WHERE pseudo = ?')->execute([$pseudo]);
     }
 }

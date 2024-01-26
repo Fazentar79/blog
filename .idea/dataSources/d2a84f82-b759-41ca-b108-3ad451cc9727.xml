@@ -1168,7 +1168,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="333" parent="1" name="blog_fantasy">
-      <LastIntrospectionLocalTimestamp>2024-01-22.14:17:02</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-23.16:05:31</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <user id="334" parent="1" name="root">
@@ -1196,7 +1196,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
     <column id="341" parent="338" name="id">
-      <AutoIncrement>11</AutoIncrement>
+      <AutoIncrement>15</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1223,7 +1223,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="346" parent="339" name="id">
-      <AutoIncrement>18</AutoIncrement>
+      <AutoIncrement>25</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1255,7 +1255,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="352" parent="340" name="id">
-      <AutoIncrement>57</AutoIncrement>
+      <AutoIncrement>61</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>

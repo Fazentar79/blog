@@ -21,7 +21,8 @@ ob_start();
             </div>
             <div>
                 <label for="email" class="form-label"></label>
-                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="E-mail">
+                <input type="email" class="form-control" id="email" name="email"
+                       aria-describedby="emailHelp" placeholder="E-mail">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label"></label>
@@ -40,3 +41,4 @@ $content = ob_get_clean();
 
 require_once "view/template/base.php";
 ?>
+

@@ -21,9 +21,6 @@ class Manager
      */
     protected function getDb(): PDO
     {
-        if (self::$db === null) {
-            return self::setDb();
-        }
-        return self::$db;
+        return self::$db ?? self::setDb();
     }
 }

@@ -9,10 +9,11 @@ ob_start();
 <section class="container">
 
     <section class="w-100 pt-5">
-        <!-- Displays different text on the main page depending on the connected profile (Unregistered, registered and admin) -->
+        <!-- Displays different text on the main page depending
+        on the connected profile (Unregistered, registered and admin) -->
         <?php
             if (SecurityController::isConnected()) {
-                if ($_SESSION['role'] == 1) { ?>
+                if ($_SESSION['role'] === 1) { ?>
 
                     <h1 class="text-center">Gestion des news</h1>
 
@@ -21,7 +22,8 @@ ob_start();
                     <h1 class="text-center fw-bold">Bon retour parmis nous <?= $_SESSION['pseudo'] ?> .</h1>
 
                     <p class="fs-5 mt-5 p-md-5">
-                        N'hésites pas à regarder les dernières news et les nouvelles images. Et donne ton avis dans la section commentaires.
+                        N'hésites pas à regarder les dernières news et les nouvelles images.
+                         Et donne ton avis dans la section commentaires.
                     </p>
                 <?php }
             }else { ?>
@@ -67,12 +69,14 @@ ob_start();
                                 <?= $article['date_creation'] ?> <br>
                                 <?php
                             if (SecurityController::isConnected()) { ?>
-                                <?php if ($_SESSION['role'] == 1) { ?>
+                                <?php if ($_SESSION['role'] === 1) { ?>
                                     <div class="d-flex mb-5 justify-content-md-start justify-content-between">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modify">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                                data-bs-toggle="modal" data-bs-target="#modify">
                                             Modifier la news
                                         </button>
-                                        <button type="button" class="btn btn-outline-danger ms-3" data-bs-toggle="modal" data-bs-target="#suppress_news">
+                                        <button type="button" class="btn btn-outline-danger ms-3"
+                                                data-bs-toggle="modal" data-bs-target="#suppress_news">
                                             Supprimer la news
                                         </button>
                                     </div>
@@ -91,14 +95,20 @@ ob_start();
                                                 <form action="modify-article" method="post">
                                                     <div class="modal-body">
                                                         <label for="modify_news" class="form-label"></label>
-                                                        <textarea class="form-control" id="modify_news" name="modify_news" rows="3" placeholder="Modifier la news"></textarea>
+                                                        <textarea class="form-control" id="modify_news"
+                                                          name="modify_news" rows="3" placeholder="Modifier la news">
+                                                        </textarea>
                                                     </div>
 
                                                     <div class="modal-footer">
-                                                        <input type="submit" class="btn btn-outline-secondary" name="modify_article" value="Modifier">
-                                                        <input type="hidden" name="id_article" value="<?= $article['id'] ?>">
+                                                        <input type="submit" class="btn btn-outline-secondary"
+                                                               name="modify_article" value="Modifier">
+                                                        <input type="hidden" name="id_article"
+                                                               value="<?= $article['id'] ?>">
 
-                                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">Fermer
+                                                        </button>
                                                     </div>
                                                 </form>
 
@@ -125,10 +135,13 @@ ob_start();
 
                                                 <div class="modal-footer">
                                                     <form action="delete-article" method="post" class="my-3 ms-md-5">
-                                                        <input type="submit" class="btn btn-outline-danger" name="delete_article" value="Supprimer la news">
-                                                        <input type="hidden" name="id_article" value="<?= $article['id'] ?>">
+                                                        <input type="submit" class="btn btn-outline-danger"
+                                                               name="delete_article" value="Supprimer la news">
+                                                        <input type="hidden" name="id_article"
+                                                               value="<?= $article['id'] ?>">
                                                     </form>
-                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-dismiss="modal">Fermer</button>
                                                 </div>
 
                                             </div>
@@ -152,21 +165,22 @@ ob_start();
         <?php
         // Form to add news by the admin
             try {
-                if (SecurityController::isConnected()) {
-                    if ($_SESSION['role'] == 1) {
-                        ?>
-                        <div>
-                            <form action="add-news" method="post">
-                                <div class="mb-3">
-                                    <label for="news" class="form-label"></label>
-                                    <textarea class="form-control" id="news" name="news" rows="3" placeholder="News"></textarea>
-                                </div>
-                                <input type="submit" class="btn btn-outline-secondary" name="submit_news" value="Publier">
-                                <input type="hidden" name="action" value="add-news">
-                            </form>
-                        </div>
-                    <?php }
-                }
+                if (SecurityController::isConnected() && $_SESSION['role'] === 1) {
+                    ?>
+                    <div>
+                        <form action="add-news" method="post">
+                            <div class="mb-3">
+                                <label for="news" class="form-label"></label>
+                                <textarea class="form-control" id="news"
+                                          name="news" rows="3" placeholder="News">
+                                </textarea>
+                            </div>
+                            <input type="submit" class="btn btn-outline-secondary"
+                                   name="submit_news" value="Publier">
+                            <input type="hidden" name="action" value="add-news">
+                        </form>
+                    </div>
+                <?php }
             }catch (Exception $e) {
                 $errorMessage = $e->getMessage();
             }

@@ -22,7 +22,8 @@ ob_start();
         <form action="connection" method="post">
             <div>
                 <label for="pseudo" class="form-label"></label>
-                <input type="text" class="form-control" id="pseudo" name="pseudo" aria-describedby="emailHelp" placeholder="Pseudo">
+                <input type="text" class="form-control" id="pseudo" name="pseudo"
+                       aria-describedby="emailHelp" placeholder="Pseudo">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label"></label>
@@ -44,3 +45,4 @@ $content = ob_get_clean();
 
 require_once "view/template/base.php";
 ?>
+

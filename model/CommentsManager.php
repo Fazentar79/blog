@@ -8,8 +8,7 @@ class CommentsManager extends Manager
      */
     public function getComments(): PDOStatement
     {
-        $db = $this->getDb();
-        return $db->query('SELECT * FROM comments ORDER BY id DESC');
+        return $this->getDb()->query('SELECT * FROM comments ORDER BY id DESC');
     }
 
     /**
@@ -20,7 +19,7 @@ class CommentsManager extends Manager
         $db = $this->getDb();
         $req = $db->prepare('SELECT id FROM comments WHERE id = ? AND comment_pseudo = ?');
         $req->execute([$id, $_SESSION['pseudo']]);
-        return $req->rowCount() == 1;
+        return $req->rowCount() === 1;
     }
 
     /**
@@ -53,7 +52,6 @@ class CommentsManager extends Manager
     public function deleteComment($id): bool
     {
         $db = $this->getDb();
-        $req = $db->prepare('DELETE FROM comments WHERE id = ?');
-        return $req->execute([$id]);
+        return $db->prepare('DELETE FROM comments WHERE id = ?')->execute([$id]);
     }
 }
