@@ -1168,7 +1168,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="333" parent="1" name="blog_fantasy">
-      <LastIntrospectionLocalTimestamp>2024-01-23.16:05:31</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-01-26.08:56:32</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <user id="334" parent="1" name="root">
@@ -1196,7 +1196,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>
     <column id="341" parent="338" name="id">
-      <AutoIncrement>15</AutoIncrement>
+      <AutoIncrement>18</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1223,7 +1223,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="346" parent="339" name="id">
-      <AutoIncrement>25</AutoIncrement>
+      <AutoIncrement>31</AutoIncrement>
       <DasType>int(11)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
